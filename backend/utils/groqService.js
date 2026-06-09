@@ -73,7 +73,7 @@ Strictly return only JSON matching the schema:
           content: prompt
         }
       ],
-      model: 'llama3-8b-8192',
+      model: 'llama-3.3-70b-versatile',
       response_format: { type: 'json_object' }
     });
 

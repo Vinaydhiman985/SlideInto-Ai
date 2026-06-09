@@ -35,6 +35,36 @@ function post(path, data, token = null) {
   });
 }
 
+function get(path, token = null) {
+  return new Promise((resolve, reject) => {
+    const headers = {};
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+    const req = http.request({
+      hostname: '127.0.0.1',
+      port: 5000,
+      path: path,
+      method: 'GET',
+      headers: headers
+    }, (res) => {
+      let body = '';
+      res.on('data', (chunk) => body += chunk);
+      res.on('end', () => {
+        try {
+          const json = JSON.parse(body);
+          resolve({ statusCode: res.statusCode, data: json });
+        } catch (e) {
+          resolve({ statusCode: res.statusCode, data: body });
+        }
+      });
+    });
+
+    req.on('error', (err) => reject(err));
+    req.end();
+  });
+}
+
 async function runTests() {
   console.log('--- Starting API Verification ---');
   const email = `testuser_${Date.now()}@example.com`;
@@ -91,6 +121,16 @@ async function runTests() {
 
     if (generateLIDRes.statusCode !== 201) {
       throw new Error('LinkedIn Generation failed');
+    }
+
+    // 5. Retrieve History
+    console.log('\nTesting GET HISTORY...');
+    const historyRes = await get('/api/dm/history', token);
+    console.log('History Status:', historyRes.statusCode);
+    console.log('History Count:', historyRes.data?.data ? historyRes.data.data.length : 'No data array');
+
+    if (historyRes.statusCode !== 200 || !Array.isArray(historyRes.data?.data)) {
+      throw new Error('Get History failed');
     }
 
     console.log('\n--- API Verification Passed Successfully! ---');

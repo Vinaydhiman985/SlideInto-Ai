@@ -176,4 +176,19 @@ router.post('/generate', authMiddleware, async (req, res) => {
   }
 });
 
+// @route   GET /api/dm/history
+// @desc    Retrieve saved DM history for the current user
+// @access  Private (JWT protected)
+router.get('/history', authMiddleware, async (req, res) => {
+  try {
+    const dms = await DM.find({ userId: req.user.id })
+      .sort({ createdAt: -1 })
+      .limit(50);
+    res.json({ data: dms });
+  } catch (err) {
+    console.error('Fetch history error:', err.message);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 module.exports = router;
