@@ -52,14 +52,31 @@ app.use((err, req, res, next) => {
 });
 
 // Database connection & Server Startup
-mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/slideinto')
-  .then(() => {
+const dbUri = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/slideinto';
+
+async function connectWithFallback() {
+  try {
+    await mongoose.connect(dbUri, { serverSelectionTimeoutMS: 5000 });
     console.log('Connected to MongoDB database successfully.');
-    app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
-    });
-  })
-  .catch((err) => {
-    console.error('Failed to connect to MongoDB:', err.message);
-    process.exit(1);
+  } catch (err) {
+    console.error('Failed to connect to primary MongoDB URI:', err.message);
+    if (dbUri !== 'mongodb://127.0.0.1:27017/slideinto') {
+      console.log('Attempting local MongoDB database fallback...');
+      try {
+        await mongoose.connect('mongodb://127.0.0.1:27017/slideinto', { serverSelectionTimeoutMS: 3000 });
+        console.log('Connected to local MongoDB database successfully.');
+      } catch (localErr) {
+        console.error('Local MongoDB connection failed:', localErr.message);
+        console.warn('WARNING: Running server without database connection! Database operations will fail.');
+      }
+    } else {
+      console.warn('WARNING: Running server without database connection! Database operations will fail.');
+    }
+  }
+  
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
   });
+}
+
+connectWithFallback();
