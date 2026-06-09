@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
-export default function UpgradeToPro({ activeTab, setActiveTab }) {
+export default function UpgradeToPro() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { logout } = useAuth();
+
+  const activePath = location.pathname;
 
   const toggleMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -16,7 +24,7 @@ export default function UpgradeToPro({ activeTab, setActiveTab }) {
   const handleUpgrade = () => {
     showToast("Processing upgrade... Thank you for choosing SlideInto Pro! Redirecting...");
     setTimeout(() => {
-      setActiveTab('dashboard');
+      navigate('/dashboard');
     }, 2000);
   };
 
@@ -45,11 +53,11 @@ export default function UpgradeToPro({ activeTab, setActiveTab }) {
         </div>
       )}
 
-      {/* Mobile Top Header (Visible only on small screens) */}
+      {/* Mobile Top Header */}
       <header className="md:hidden fixed top-0 w-full z-50 bg-surface-container-lowest border-b border-outline-variant h-16 flex items-center px-margin-mobile justify-between">
         <button 
-          onClick={() => setActiveTab('landing')}
-          className="flex items-center gap-3"
+          onClick={() => navigate('/')}
+          className="flex items-center gap-3 bg-transparent border-none outline-none"
         >
           <span className="material-symbols-outlined text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>bolt</span>
           <span className="font-title-md text-title-md font-bold text-on-surface">SlideInto</span>
@@ -63,117 +71,64 @@ export default function UpgradeToPro({ activeTab, setActiveTab }) {
         </button>
       </header>
 
-      {/* SideNavBar (Shared Component) */}
+      {/* SideNavBar */}
       <aside 
         className={`bg-surface-container-lowest text-primary font-body-sm text-body-sm w-[240px] h-screen fixed left-0 top-0 border-r border-outline-variant flex flex-col p-6 z-40 transform ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 transition-transform duration-300 ease-in-out`}
       >
         {/* Header */}
-        <div className="mb-8 flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary">
-            <span className="material-symbols-outlined text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>bolt</span>
+        <div className="mb-8 px-2 flex items-center gap-3">
+          <div className="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+            <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>electric_bolt</span>
           </div>
           <div>
-            <button 
-              onClick={() => setActiveTab('landing')}
-              className="font-title-md text-title-md font-bold text-on-surface leading-tight text-left"
-            >
-              SlideInto
-            </button>
-            <p className="font-body-sm text-body-sm text-on-surface-variant leading-tight">Ghostwriter AI</p>
+            <h1 className="font-headline-sm text-headline-sm font-bold text-primary tracking-tight">SlideInto</h1>
+            <p className="font-body-sm text-body-sm text-on-surface-variant -mt-1">Ghostwriter AI</p>
           </div>
         </div>
 
         {/* Navigation Links */}
-        <nav className="flex-grow flex flex-col gap-2 overflow-y-auto no-scrollbar">
-          <button 
-            onClick={() => { setActiveTab('dashboard'); setIsMobileMenuOpen(false); }}
-            className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-colors active:scale-95 duration-200 text-left ${
-              activeTab === 'dashboard' ? 'bg-secondary-container text-on-secondary-container font-semibold' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
-            }`}
-          >
-            <span className="material-symbols-outlined">dashboard</span>
-            Dashboard
-          </button>
-          <button 
-            onClick={() => { setActiveTab('generator'); setIsMobileMenuOpen(false); }}
-            className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-colors active:scale-95 duration-200 text-left ${
-              activeTab === 'generator' ? 'bg-secondary-container text-on-secondary-container font-semibold' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
-            }`}
-          >
-            <span className="material-symbols-outlined">bolt</span>
-            Generate DM
-          </button>
-          <button 
-            onClick={() => { setActiveTab('history'); setIsMobileMenuOpen(false); }}
-            className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-colors active:scale-95 duration-200 text-left ${
-              activeTab === 'history' ? 'bg-secondary-container text-on-secondary-container font-semibold' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
-            }`}
-          >
-            <span className="material-symbols-outlined">history</span>
-            History
-          </button>
-          <button 
-            onClick={() => { setActiveTab('bulk'); setIsMobileMenuOpen(false); }}
-            className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-colors active:scale-95 duration-200 text-left ${
-              activeTab === 'bulk' ? 'bg-secondary-container text-on-secondary-container font-semibold' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
-            }`}
-          >
-            <span className="material-symbols-outlined">rocket_launch</span>
-            Bulk Mode
-          </button>
-          <button 
-            onClick={() => { setActiveTab('extension'); setIsMobileMenuOpen(false); }}
-            className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-colors active:scale-95 duration-200 text-left ${
-              activeTab === 'extension' ? 'bg-secondary-container text-on-secondary-container font-semibold' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
-            }`}
-          >
-            <span className="material-symbols-outlined">extension</span>
-            Chrome Extension
-          </button>
-          <button 
-            onClick={() => { setActiveTab('settings'); setIsMobileMenuOpen(false); }}
-            className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-colors active:scale-95 duration-200 text-left ${
-              activeTab === 'settings' ? 'bg-secondary-container text-on-secondary-container font-semibold' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
-            }`}
-          >
-            <span className="material-symbols-outlined">settings</span>
-            Settings
-          </button>
+        <nav className="flex-grow flex flex-col gap-1 overflow-y-auto no-scrollbar">
+          {[
+            { path: '/dashboard', label: 'Dashboard', icon: 'dashboard' },
+            { path: '/generator', label: 'Generate DM', icon: 'bolt' },
+            { path: '/history', label: 'History', icon: 'history' },
+            { path: '/bulk', label: 'Bulk Mode', icon: 'rocket_launch', pro: true },
+            { path: '/extension', label: 'Chrome Extension', icon: 'extension' },
+            { path: '/settings', label: 'Settings', icon: 'settings', mt: 'mt-auto' }
+          ].map((item, idx) => {
+            const isActive = activePath === item.path;
+            return (
+              <button 
+                key={idx}
+                onClick={() => { navigate(item.path); setIsMobileMenuOpen(false); }}
+                className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors active:scale-95 duration-200 font-body-sm text-body-sm text-left ${item.mt || ''} ${
+                  isActive ? 'bg-secondary-container text-on-secondary-container font-medium' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
+                }`}
+              >
+                <span className="material-symbols-outlined text-[20px]">{item.icon}</span>
+                {item.label}
+                {item.pro && (
+                  <span className="ml-auto bg-primary text-on-primary text-[9px] px-1.5 py-0.2 rounded font-bold">PRO</span>
+                )}
+              </button>
+            )
+          })}
         </nav>
 
-        {/* CTA Widget */}
-        <div className="mt-8 mb-4 p-4 rounded-xl bg-surface-container-low border border-outline-variant">
-          <p className="font-body-sm text-body-sm text-on-surface mb-2 font-medium">Currently on Starter</p>
-          <div className="w-full bg-surface-variant rounded-full h-1.5 mb-2">
-            <div className="bg-primary h-1.5 rounded-full" style={{ width: '100%' }}></div>
-          </div>
-          <p className="font-label-caps text-label-caps text-on-surface-variant mb-3">10/10 DMs Used</p>
+        {/* Footer Actions */}
+        <div className="mt-4 pt-4 border-t border-outline-variant flex flex-col gap-1">
           <button 
-            onClick={() => setActiveTab('upgrade')}
-            className={`w-full py-2 rounded-lg font-body-sm text-body-sm font-semibold transition-all ${
-              activeTab === 'upgrade' 
-                ? 'bg-primary text-on-primary shadow-inner cursor-default' 
-                : 'bg-primary-container text-on-primary-container hover:bg-primary hover:text-on-primary'
-            }`}
+            onClick={() => { navigate('/help'); setIsMobileMenuOpen(false); }}
+            className="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 font-body-sm text-body-sm text-left w-full"
           >
-            Upgrade to Pro
-          </button>
-        </div>
-
-        {/* Footer Links */}
-        <div className="pt-4 border-t border-outline-variant flex flex-col gap-2">
-          <button 
-            onClick={() => { setActiveTab('help'); setIsMobileMenuOpen(false); }}
-            className="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors text-left"
-          >
-            <span className="material-symbols-outlined">help</span>
+            <span className="material-symbols-outlined text-[20px]">help</span>
             Help Center
           </button>
           <button 
-            onClick={() => { setActiveTab('landing'); setIsMobileMenuOpen(false); }}
-            className="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors text-left"
+            onClick={() => { logout(); navigate('/login'); setIsMobileMenuOpen(false); }}
+            className="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 font-body-sm text-body-sm text-left w-full"
           >
-            <span className="material-symbols-outlined">logout</span>
+            <span className="material-symbols-outlined text-[20px]">logout</span>
             Log Out
           </button>
         </div>

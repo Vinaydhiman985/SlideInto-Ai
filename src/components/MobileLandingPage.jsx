@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export default function MobileLandingPage({ setActiveTab }) {
+export default function MobileLandingPage() {
+  const navigate = useNavigate();
   const observerRef = useRef(null);
 
   useEffect(() => {
@@ -61,16 +63,16 @@ export default function MobileLandingPage({ setActiveTab }) {
         <div className="max-w-container-max mx-auto px-margin-mobile flex items-center justify-between h-16">
           {/* Brand */}
           <button 
-            onClick={() => setActiveTab('landing')}
-            className="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed cursor-pointer"
+            onClick={() => navigate('/')}
+            className="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed cursor-pointer bg-transparent border-none outline-none"
           >
             SlideInto
           </button>
           
           {/* Mobile Menu Toggle */}
           <button 
-            onClick={() => setActiveTab('generator')}
-            className="text-primary font-body-sm text-body-sm hover:opacity-80 transition-opacity cursor-pointer border border-primary/20 px-3 py-1.5 rounded-lg"
+            onClick={() => navigate('/login')}
+            className="text-primary font-body-sm text-body-sm hover:opacity-80 transition-opacity cursor-pointer border border-primary/20 px-3 py-1.5 rounded-lg bg-transparent"
           >
             Login
           </button>
@@ -98,7 +100,7 @@ export default function MobileLandingPage({ setActiveTab }) {
               />
             </div>
             <button 
-              onClick={() => setActiveTab('generator')}
+              onClick={() => navigate('/generator')}
               className="w-full bg-primary text-on-primary py-4 rounded-xl font-title-md text-title-md flex items-center justify-center gap-2 hover:bg-surface-tint transition-colors shadow-sm animate-pulse-scale cursor-pointer"
             >
               Generate Deck

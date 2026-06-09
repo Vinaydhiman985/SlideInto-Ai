@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
-export default function BulkMode({ activeTab, setActiveTab }) {
+export default function BulkMode() {
   const [queuedItems, setQueuedItems] = useState([
     { id: 1, name: 'Alex Mercer', title: 'VP of Engineering', company: 'TechFlow Inc.', status: 'Ready', statusColor: 'bg-[#10b981]' },
     { id: 2, name: 'Sarah Chen', title: 'Director of Product', company: 'Innovate Solutions', status: 'Ready', statusColor: 'bg-[#10b981]' },
@@ -9,6 +11,12 @@ export default function BulkMode({ activeTab, setActiveTab }) {
   const [isProcessing, setIsProcessing] = useState(false);
   const [progress, setProgress] = useState(0);
   const fileInputRef = useRef(null);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { logout } = useAuth();
+
+  const activePath = location.pathname;
 
   const handleDelete = (id) => {
     setQueuedItems(queuedItems.filter(item => item.id !== id));
@@ -86,92 +94,95 @@ export default function BulkMode({ activeTab, setActiveTab }) {
         className="hidden" 
       />
 
-      {/* SideNavBar (Desktop Only) */}
-      <nav className="hidden md:flex flex-col py-margin-desktop px-gutter bg-surface-container-lowest border-r border-outline-variant w-[240px] h-screen fixed left-0 top-0 z-40">
-        <div className="mb-10">
-          <h1 className="font-headline-sm text-headline-sm font-bold text-primary">SlideInto</h1>
-          <p className="font-body-sm text-body-sm text-on-surface-variant">Ghostwriter AI</p>
-        </div>
-        <div className="flex-1 space-y-2">
-          <button 
-            onClick={() => setActiveTab('dashboard')}
-            className={`w-full flex items-center gap-3 px-3 py-2 font-body-md text-body-md transition-colors active:scale-95 duration-200 rounded-lg text-left ${
-              activeTab === 'dashboard' ? 'bg-secondary-container text-on-secondary-container' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
-            }`}
-          >
-            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 0" }}>dashboard</span>
-            Dashboard
-          </button>
-          <button 
-            onClick={() => setActiveTab('generator')}
-            className={`w-full flex items-center gap-3 px-3 py-2 font-body-md text-body-md transition-colors active:scale-95 duration-200 rounded-lg text-left ${
-              activeTab === 'generator' ? 'bg-secondary-container text-on-secondary-container' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
-            }`}
-          >
-            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 0" }}>bolt</span>
-            Generate DM
-          </button>
-          <button 
-            onClick={() => setActiveTab('history')}
-            className={`w-full flex items-center gap-3 px-3 py-2 font-body-md text-body-md transition-colors active:scale-95 duration-200 rounded-lg text-left ${
-              activeTab === 'history' ? 'bg-secondary-container text-on-secondary-container' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
-            }`}
-          >
-            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 0" }}>history</span>
-            History
-          </button>
-          <button 
-            onClick={() => setActiveTab('bulk')}
-            className={`w-full flex items-center gap-3 px-3 py-2 font-body-md text-body-md transition-colors active:scale-95 duration-200 rounded-lg text-left ${
-              activeTab === 'bulk' ? 'bg-secondary-container text-on-secondary-container' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
-            }`}
-          >
-            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>rocket_launch</span>
-            Bulk Mode
-          </button>
-          <button 
-            onClick={() => setActiveTab('extension')}
-            className={`w-full flex items-center gap-3 px-3 py-2 font-body-md text-body-md transition-colors active:scale-95 duration-200 rounded-lg text-left ${
-              activeTab === 'extension' ? 'bg-secondary-container text-on-secondary-container' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
-            }`}
-          >
-            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 0" }}>extension</span>
-            Chrome Extension
-          </button>
-          <button 
-            onClick={() => setActiveTab('settings')}
-            className={`w-full flex items-center gap-3 px-3 py-2 font-body-md text-body-md transition-colors active:scale-95 duration-200 rounded-lg text-left ${
-              activeTab === 'settings' ? 'bg-secondary-container text-on-secondary-container' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
-            }`}
-          >
-            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 0" }}>settings</span>
-            Settings
-          </button>
-        </div>
-        <div className="mt-auto space-y-4">
-          <button className="w-full py-2 px-4 bg-primary-container text-on-primary-container font-body-sm text-body-sm rounded-lg hover:bg-surface-tint hover:text-on-primary transition-colors flex items-center justify-center gap-2">
-            Upgrade to Pro
-            <span className="material-symbols-outlined text-[16px]">stars</span>
-          </button>
-          <div className="space-y-2 border-t border-outline-variant pt-4">
-            <a className="flex items-center gap-3 px-3 py-2 font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors rounded-lg" href="#">
-              <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 0" }}>help</span>
-              Help Center
-            </a>
-            <a className="flex items-center gap-3 px-3 py-2 font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors rounded-lg" href="#">
-              <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 0" }}>logout</span>
-              Log Out
-            </a>
+      {/* SideNavBar */}
+      <nav className="hidden md:flex w-[240px] h-screen fixed left-0 top-0 border-r border-outline-variant bg-surface-container-lowest flex-col py-6 px-4 z-40">
+        {/* Header */}
+        <div className="mb-8 px-2 flex items-center gap-3">
+          <div className="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+            <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>electric_bolt</span>
           </div>
+          <div>
+            <h1 className="font-headline-sm text-headline-sm font-bold text-primary tracking-tight">SlideInto</h1>
+            <p className="font-body-sm text-body-sm text-on-surface-variant -mt-1">Ghostwriter AI</p>
+          </div>
+        </div>
+        
+        {/* Navigation Links */}
+        <div className="flex-grow flex flex-col gap-1">
+          {[
+            { path: '/dashboard', label: 'Dashboard', icon: 'dashboard' },
+            { path: '/generator', label: 'Generate DM', icon: 'bolt' },
+            { path: '/history', label: 'History', icon: 'history' },
+            { path: '/bulk', label: 'Bulk Mode', icon: 'rocket_launch', pro: true },
+            { path: '/extension', label: 'Chrome Extension', icon: 'extension' },
+            { path: '/settings', label: 'Settings', icon: 'settings', mt: 'mt-auto' }
+          ].map((item, idx) => {
+            const isActive = activePath === item.path;
+            return (
+              <button 
+                key={idx}
+                onClick={() => navigate(item.path)}
+                className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors active:scale-95 duration-200 font-body-sm text-body-sm text-left ${item.mt || ''} ${
+                  isActive ? 'bg-secondary-container text-on-secondary-container font-medium' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
+                }`}
+              >
+                <span className="material-symbols-outlined text-[20px]">{item.icon}</span>
+                {item.label}
+                {item.pro && (
+                  <span className="ml-auto bg-primary text-on-primary text-[9px] px-1.5 py-0.2 rounded font-bold">PRO</span>
+                )}
+              </button>
+            )
+          })}
+        </div>
+        
+        {/* Footer Actions */}
+        <div className="mt-4 pt-4 border-t border-outline-variant flex flex-col gap-1">
+          <button 
+            onClick={() => navigate('/help')}
+            className="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 font-body-sm text-body-sm text-left w-full"
+          >
+            <span className="material-symbols-outlined text-[20px]">help</span>
+            Help Center
+          </button>
+          <button 
+            onClick={() => { logout(); navigate('/login'); }}
+            className="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 font-body-sm text-body-sm text-left w-full"
+          >
+            <span className="material-symbols-outlined text-[20px]">logout</span>
+            Log Out
+          </button>
+        </div>
+        
+        {/* CTA */}
+        <div className="mt-6 px-2">
+          <button 
+            onClick={() => navigate('/upgrade')}
+            className="w-full bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors py-2 px-4 rounded-xl border border-outline-variant font-body-sm text-body-sm font-medium flex items-center justify-center gap-2"
+          >
+            <span className="material-symbols-outlined text-[16px]">stars</span>
+            Upgrade to Pro
+          </button>
         </div>
       </nav>
 
       {/* TopAppBar (Mobile Only - Fallback Nav) */}
       <header className="md:hidden flex justify-between items-center h-16 px-gutter fixed top-0 w-full z-50 bg-surface border-b border-outline-variant">
         <h1 className="font-headline-sm text-headline-sm font-black text-on-surface">SlideInto</h1>
-        <button className="text-on-surface-variant">
-          <span className="material-symbols-outlined">menu</span>
-        </button>
+        <div className="flex gap-2">
+          <button 
+            onClick={() => navigate('/generator')}
+            className="text-xs px-2.5 py-1 rounded text-on-surface-variant"
+          >
+            Generator
+          </button>
+          <button 
+            onClick={() => navigate('/settings')}
+            className="text-xs px-2.5 py-1 rounded text-on-surface-variant"
+          >
+            Settings
+          </button>
+        </div>
       </header>
 
       {/* Main Content Canvas */}

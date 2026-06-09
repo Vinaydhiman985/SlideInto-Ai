@@ -1,8 +1,16 @@
 import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
-export default function ChromeExtension({ activeTab, setActiveTab }) {
+export default function ChromeExtension() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { logout } = useAuth();
+
+  const activePath = location.pathname;
+
   return (
-    <div className="bg-background text-on-background antialiased md:pl-[240px] min-h-screen">
+    <div className="bg-background text-on-background antialiased flex min-h-screen w-full font-sans">
       <style dangerouslySetInnerHTML={{__html: `
         .glass-card {
             background: rgba(255, 255, 255, 0.85);
@@ -16,82 +24,75 @@ export default function ChromeExtension({ activeTab, setActiveTab }) {
         }
       `}} />
 
-      {/* SideNavBar (Desktop Only) */}
-      <nav className="hidden md:flex w-[240px] h-screen fixed left-0 top-0 bg-surface-container-lowest border-r border-outline-variant flex-col py-margin-desktop px-sm z-40">
-        <div className="mb-8 px-4">
-          <h1 className="font-headline-sm text-headline-sm font-bold text-primary">SlideInto</h1>
-          <p className="font-body-sm text-body-sm text-on-surface-variant">Ghostwriter AI</p>
+      {/* SideNavBar */}
+      <nav className="hidden md:flex w-[240px] h-screen fixed left-0 top-0 border-r border-outline-variant bg-surface-container-lowest flex-col py-6 px-4 z-40">
+        {/* Header */}
+        <div className="mb-8 px-2 flex items-center gap-3">
+          <div className="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+            <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>electric_bolt</span>
+          </div>
+          <div>
+            <h1 className="font-headline-sm text-headline-sm font-bold text-primary tracking-tight">SlideInto</h1>
+            <p className="font-body-sm text-body-sm text-on-surface-variant -mt-1">Ghostwriter AI</p>
+          </div>
         </div>
-        <div className="flex-1 flex flex-col gap-2 px-2">
+        
+        {/* Navigation Links */}
+        <div className="flex-grow flex flex-col gap-1">
+          {[
+            { path: '/dashboard', label: 'Dashboard', icon: 'dashboard' },
+            { path: '/generator', label: 'Generate DM', icon: 'bolt' },
+            { path: '/history', label: 'History', icon: 'history' },
+            { path: '/bulk', label: 'Bulk Mode', icon: 'rocket_launch', pro: true },
+            { path: '/extension', label: 'Chrome Extension', icon: 'extension' },
+            { path: '/settings', label: 'Settings', icon: 'settings', mt: 'mt-auto' }
+          ].map((item, idx) => {
+            const isActive = activePath === item.path;
+            return (
+              <button 
+                key={idx}
+                onClick={() => navigate(item.path)}
+                className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors active:scale-95 duration-200 font-body-sm text-body-sm text-left ${item.mt || ''} ${
+                  isActive ? 'bg-secondary-container text-on-secondary-container font-medium' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
+                }`}
+              >
+                <span className="material-symbols-outlined text-[20px]">{item.icon}</span>
+                {item.label}
+                {item.pro && (
+                  <span className="ml-auto bg-primary text-on-primary text-[9px] px-1.5 py-0.2 rounded font-bold">PRO</span>
+                )}
+              </button>
+            )
+          })}
+        </div>
+        
+        {/* Footer Actions */}
+        <div className="mt-4 pt-4 border-t border-outline-variant flex flex-col gap-1">
           <button 
-            onClick={() => setActiveTab('dashboard')}
-            className={`flex items-center gap-3 px-3 py-2 transition-colors active:scale-95 duration-200 rounded-lg text-left ${
-              activeTab === 'dashboard' ? 'bg-secondary-container text-on-secondary-container' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
-            }`}
+            onClick={() => navigate('/help')}
+            className="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 font-body-sm text-body-sm text-left w-full"
           >
-            <span className="material-symbols-outlined">dashboard</span>
-            <span className="font-body-md text-body-md">Dashboard</span>
+            <span className="material-symbols-outlined text-[20px]">help</span>
+            Help Center
           </button>
           <button 
-            onClick={() => setActiveTab('generator')}
-            className={`flex items-center gap-3 px-3 py-2 transition-colors active:scale-95 duration-200 rounded-lg text-left ${
-              activeTab === 'generator' ? 'bg-secondary-container text-on-secondary-container' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
-            }`}
+            onClick={() => { logout(); navigate('/login'); }}
+            className="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 font-body-sm text-body-sm text-left w-full"
           >
-            <span className="material-symbols-outlined">bolt</span>
-            <span className="font-body-md text-body-md">Generate DM</span>
-          </button>
-          <button 
-            onClick={() => setActiveTab('history')}
-            className={`flex items-center gap-3 px-3 py-2 transition-colors active:scale-95 duration-200 rounded-lg text-left ${
-              activeTab === 'history' ? 'bg-secondary-container text-on-secondary-container' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
-            }`}
-          >
-            <span className="material-symbols-outlined">history</span>
-            <span className="font-body-md text-body-md">History</span>
-          </button>
-          <button 
-            onClick={() => setActiveTab('bulk')}
-            className={`flex items-center gap-3 px-3 py-2 transition-colors active:scale-95 duration-200 rounded-lg text-left ${
-              activeTab === 'bulk' ? 'bg-secondary-container text-on-secondary-container' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
-            }`}
-          >
-            <span className="material-symbols-outlined">rocket_launch</span>
-            <span className="font-body-md text-body-md">Bulk Mode</span>
-          </button>
-          <button 
-            onClick={() => setActiveTab('extension')}
-            className={`flex items-center gap-3 px-3 py-2 transition-colors active:scale-95 duration-200 rounded-lg text-left ${
-              activeTab === 'extension' ? 'bg-secondary-container text-on-secondary-container' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
-            }`}
-          >
-            <span className="material-symbols-outlined">extension</span>
-            <span className="font-body-md text-body-md">Chrome Extension</span>
-          </button>
-          <button 
-            onClick={() => setActiveTab('settings')}
-            className={`flex items-center gap-3 px-3 py-2 transition-colors active:scale-95 duration-200 rounded-lg text-left ${
-              activeTab === 'settings' ? 'bg-secondary-container text-on-secondary-container' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
-            }`}
-          >
-            <span className="material-symbols-outlined">settings</span>
-            <span className="font-body-md text-body-md">Settings</span>
+            <span className="material-symbols-outlined text-[20px]">logout</span>
+            Log Out
           </button>
         </div>
-        <div className="mt-auto flex flex-col gap-2 px-2">
-          <button className="w-full bg-primary-container text-on-primary font-body-sm text-body-sm py-2 rounded-lg hover:opacity-90 transition-opacity">
+        
+        {/* CTA */}
+        <div className="mt-6 px-2">
+          <button 
+            onClick={() => navigate('/upgrade')}
+            className="w-full bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors py-2 px-4 rounded-xl border border-outline-variant font-body-sm text-body-sm font-medium flex items-center justify-center gap-2"
+          >
+            <span className="material-symbols-outlined text-[16px]">stars</span>
             Upgrade to Pro
           </button>
-          <div className="mt-4 pt-4 border-t border-outline-variant flex flex-col gap-2">
-            <a className="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 rounded-lg" href="#">
-              <span className="material-symbols-outlined">help</span>
-              <span className="font-body-md text-body-md">Help Center</span>
-            </a>
-            <a className="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 rounded-lg" href="#">
-              <span className="material-symbols-outlined">logout</span>
-              <span className="font-body-md text-body-md">Log Out</span>
-            </a>
-          </div>
         </div>
       </nav>
 
@@ -99,20 +100,23 @@ export default function ChromeExtension({ activeTab, setActiveTab }) {
       <header className="md:hidden flex justify-between items-center h-16 px-gutter w-full bg-surface border-b border-outline-variant z-50 sticky top-0">
         <h1 className="font-headline-sm text-headline-sm font-black text-on-surface">SlideInto</h1>
         <div className="flex gap-2">
-          {['generator', 'extension'].map(tab => (
-            <button 
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`text-xs px-2.5 py-1 rounded ${activeTab === tab ? 'bg-secondary-container text-on-secondary-container' : 'text-on-surface-variant'}`}
-            >
-              {tab === 'generator' ? 'Generator' : 'Extension'}
-            </button>
-          ))}
+          <button 
+            onClick={() => navigate('/generator')}
+            className="text-xs px-2.5 py-1 rounded text-on-surface-variant"
+          >
+            Generator
+          </button>
+          <button 
+            onClick={() => navigate('/settings')}
+            className="text-xs px-2.5 py-1 rounded text-on-surface-variant"
+          >
+            Settings
+          </button>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="max-w-container-max mx-auto px-margin-mobile md:px-gutter py-8 md:py-16">
+      <main className="flex-grow md:ml-[240px] pt-20 md:pt-0 max-w-container-max mx-auto px-margin-mobile md:px-gutter py-8 md:py-16">
         {/* Hero Section */}
         <section className="flex flex-col lg:flex-row items-center gap-12 mb-24">
           <div className="flex-1 space-y-6 text-center lg:text-left">

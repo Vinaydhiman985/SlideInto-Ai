@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export default function LandingPage({ setActiveTab }) {
+export default function LandingPage() {
+  const navigate = useNavigate();
   const observerRef = useRef(null);
 
   useEffect(() => {
@@ -117,13 +119,13 @@ export default function LandingPage({ setActiveTab }) {
           </div>
           <div className="flex items-center gap-4">
             <button 
-              onClick={() => setActiveTab('generator')}
-              className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary hidden md:block cursor-pointer"
+              onClick={() => navigate('/login')}
+              className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary hidden md:block cursor-pointer bg-transparent border-none outline-none"
             >
               Login
             </button>
             <button 
-              onClick={() => setActiveTab('generator')}
+              onClick={() => navigate('/generator')}
               className="bg-primary text-on-primary font-body-sm text-body-sm px-4 py-2 rounded-lg hover:opacity-90 transition-opacity hover-lift cursor-pointer"
             >
               Get Started
@@ -145,7 +147,7 @@ export default function LandingPage({ setActiveTab }) {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-lg mx-auto bg-surface p-2 rounded-full border border-outline-variant/50 shadow-sm focus-within:ring-2 focus-within:ring-secondary-container transition-all fade-in-up stagger-3">
               <input className="flex-1 bg-transparent border-none focus:ring-0 text-on-surface font-body-sm text-body-sm w-full px-4 outline-none" placeholder="Paste LinkedIn or X profile URL..." type="url" />
               <button 
-                onClick={() => setActiveTab('generator')}
+                onClick={() => navigate('/generator')}
                 className="bg-primary text-on-primary font-body-sm text-body-sm px-6 py-3 rounded-full hover:bg-primary-fixed-dim hover:text-on-primary-fixed transition-colors whitespace-nowrap w-full sm:w-auto hover-lift cursor-pointer"
               >
                 Analyze Profile
@@ -277,7 +279,7 @@ export default function LandingPage({ setActiveTab }) {
                 <li className="flex items-center gap-2 font-body-sm text-body-sm"><span className="material-symbols-outlined text-primary text-[18px]">check</span> Basic Tone Matching</li>
               </ul>
               <button 
-                onClick={() => setActiveTab('generator')}
+                onClick={() => navigate('/generator')}
                 className="w-full bg-surface text-on-surface border border-outline-variant/50 font-body-sm text-body-sm px-4 py-2 rounded-lg hover:bg-surface-container-low transition-colors hover-lift cursor-pointer"
               >
                 Choose Starter
@@ -294,7 +296,7 @@ export default function LandingPage({ setActiveTab }) {
                 <li className="flex items-center gap-2 font-body-sm text-body-sm"><span className="material-symbols-outlined text-primary text-[18px]">check</span> CRM Integration</li>
               </ul>
               <button 
-                onClick={() => setActiveTab('generator')}
+                onClick={() => navigate('/generator')}
                 className="w-full bg-primary text-on-primary font-body-sm text-body-sm px-4 py-3 rounded-lg hover:bg-primary-fixed-dim transition-colors hover-lift cursor-pointer"
               >
                 Get Pro
@@ -310,7 +312,7 @@ export default function LandingPage({ setActiveTab }) {
                 <li className="flex items-center gap-2 font-body-sm text-body-sm"><span className="material-symbols-outlined text-primary text-[18px]">check</span> Priority Support</li>
               </ul>
               <button 
-                onClick={() => setActiveTab('generator')}
+                onClick={() => navigate('/generator')}
                 className="w-full bg-surface text-on-surface border border-outline-variant/50 font-body-sm text-body-sm px-4 py-2 rounded-lg hover:bg-surface-container-low transition-colors hover-lift cursor-pointer"
               >
                 Contact Sales
@@ -328,7 +330,7 @@ export default function LandingPage({ setActiveTab }) {
               Start sending highly personalized outreach today. No credit card required for your first 50 DMs.
             </p>
             <button 
-              onClick={() => setActiveTab('generator')}
+              onClick={() => navigate('/generator')}
               className="bg-on-primary text-primary font-title-md text-title-md px-8 py-4 rounded-xl hover:bg-surface-container-lowest transition-colors relative z-10 shadow-sm hover-lift cursor-pointer"
             >
               Start Free Trial
