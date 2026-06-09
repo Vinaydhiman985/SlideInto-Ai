@@ -3,7 +3,7 @@ const router = express.Router();
 const authMiddleware = require('../middleware/authMiddleware');
 const DM = require('../models/DM');
 const { scrapeProfile, detectPlatform } = require('../utils/scraper');
-const { generateDMVariants } = require('../utils/groqService');
+const { generateDMVariants } = require('../utils/geminiService');
 
 // Helper to generate mock DMs (Fallback when Groq fails or API key is not configured)
 function generateMockDMs(platform, outreachGoal, contextBio, username) {
@@ -120,7 +120,7 @@ router.post('/generate', authMiddleware, async (req, res) => {
     let generatedDMs = null;
     let isMock = false;
 
-    if (process.env.GROQ_API_KEY && process.env.GROQ_API_KEY !== 'gsk_placeholder_api_key_for_groq') {
+    if (process.env.GEMINI_API_KEY && process.env.GEMINI_API_KEY !== 'your_gemini_api_key_here') {
       try {
         generatedDMs = await generateDMVariants({
           name: profileData.name,
@@ -130,8 +130,8 @@ router.post('/generate', authMiddleware, async (req, res) => {
           bio: profileData.bio,
           posts: profileData.posts
         });
-      } catch (groqErr) {
-        console.error('Groq generation failed, falling back to mock templates:', groqErr.message);
+      } catch (geminiErr) {
+        console.error('Gemini generation failed, falling back to mock templates:', geminiErr.message);
       }
     }
 
@@ -160,8 +160,8 @@ router.post('/generate', authMiddleware, async (req, res) => {
 
     res.status(201).json({
       message: isMock 
-        ? 'DMs generated successfully (Fallback Mock Mode active due to missing/failed Groq API call)' 
-        : 'DMs generated successfully using Puppeteer + Groq AI',
+        ? 'DMs generated successfully (Fallback Mock Mode active due to missing/failed Gemini API call)' 
+        : 'DMs generated successfully using Puppeteer + Gemini AI',
       scrapingBlocked: profileData.scrapingBlocked,
       scrapingDetails: {
         detectedName: profileData.name,
