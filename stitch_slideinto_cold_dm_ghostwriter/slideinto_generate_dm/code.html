@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SlideInto - Generate DM</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts (Inter) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config injected -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f2f4f6",
+                    "surface-variant": "#e0e3e5",
+                    "surface-bright": "#f7f9fb",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "surface-container-high": "#e6e8ea",
+                    "surface-dim": "#d8dadc",
+                    "on-secondary-container": "#325383",
+                    "secondary-container": "#a8c8ff",
+                    "on-secondary-fixed": "#001b3c",
+                    "on-tertiary-container": "#e9f0ff",
+                    "secondary": "#3f5f90",
+                    "tertiary-fixed": "#d3e4fe",
+                    "on-tertiary-fixed": "#0b1c30",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "error": "#ba1a1a",
+                    "surface": "#f7f9fb",
+                    "tertiary": "#46566c",
+                    "secondary-fixed-dim": "#a8c8ff",
+                    "primary": "#004ac6",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed": "#00174b",
+                    "surface-tint": "#0053db",
+                    "on-primary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#5e6e85",
+                    "on-secondary-fixed-variant": "#254776",
+                    "surface-container": "#eceef0",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "on-tertiary-fixed-variant": "#38485d",
+                    "on-surface-variant": "#434655",
+                    "secondary-fixed": "#d5e3ff",
+                    "outline-variant": "#c3c6d7",
+                    "primary-container": "#2563eb",
+                    "outline": "#737686",
+                    "inverse-surface": "#2d3133",
+                    "surface-container-highest": "#e0e3e5",
+                    "tertiary-fixed-dim": "#b7c8e1",
+                    "inverse-on-surface": "#eff1f3",
+                    "on-secondary": "#ffffff",
+                    "on-surface": "#191c1e",
+                    "background": "#f7f9fb",
+                    "primary-fixed": "#dbe1ff",
+                    "inverse-primary": "#b4c5ff",
+                    "on-primary-container": "#eeefff",
+                    "on-background": "#191c1e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "container-max": "1280px",
+                    "unit": "4px",
+                    "margin-desktop": "40px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Inter"],
+                    "title-md": ["Inter"],
+                    "mono-label": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "mono-label": ["13px", {"lineHeight": "18px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d8dadc;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c3c6d7;
+        }
+        
+        /* Subtle dot grid pattern for empty states */
+        .dot-grid-bg {
+            background-image: radial-gradient(#e0e3e5 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased font-sans flex min-h-screen selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Shared Component: SideNavBar -->
+<nav class="hidden md:flex w-[240px] h-screen fixed left-0 top-0 border-r border-outline-variant bg-surface-container-lowest dark:bg-surface-container-lowest flex-col py-6 px-4 z-40">
+<!-- Header -->
+<div class="mb-8 px-2 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">electric_bolt</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary tracking-tight">SlideInto</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant -mt-1">Ghostwriter AI</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex-grow flex flex-col gap-1">
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+                Dashboard
+            </a>
+<!-- Active (Semantic match: Generate DM) -->
+<a class="flex items-center gap-3 px-3 py-2 bg-secondary-container text-on-secondary-container rounded-lg active:scale-95 duration-200 font-body-sm text-body-sm font-medium" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                Generate DM
+            </a>
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">history</span>
+                History
+            </a>
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">rocket_launch</span>
+                Bulk Mode
+            </a>
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">extension</span>
+                Chrome Extension
+            </a>
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 font-body-sm text-body-sm mt-auto" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+                Settings
+            </a>
+</div>
+<!-- Footer Actions -->
+<div class="mt-4 pt-4 border-t border-outline-variant flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">help</span>
+                Help Center
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+                Log Out
+            </a>
+</div>
+<!-- CTA -->
+<div class="mt-6 px-2">
+<button class="w-full bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors py-2 px-4 rounded-xl border border-outline-variant font-body-sm text-body-sm font-medium flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">stars</span>
+                Upgrade to Pro
+            </button>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="flex-1 ml-0 md:ml-[240px] px-gutter py-margin-desktop md:py-[48px] max-w-container-max mx-auto w-full">
+<!-- Page Header -->
+<header class="mb-10">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Craft Single Message</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2 max-w-2xl">Configure your outreach parameters below. Our AI will analyze the target profile and generate a highly personalized, high-converting direct message.</p>
+</header>
+<!-- Two Panel Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Left Panel: Input Form -->
+<div class="lg:col-span-5 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-[0px_4px_12px_rgba(0,0,0,0.02)] p-6">
+<div class="flex items-center gap-3 mb-6 pb-4 border-b border-surface-variant">
+<div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">person_search</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface">Target Details</h3>
+</div>
+<form class="flex flex-col gap-6" onsubmit="event.preventDefault();">
+<!-- URL Input -->
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant tracking-wider" for="profile-url">Target Profile URL</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline text-[20px]">link</span>
+</div>
+<input class="w-full pl-10 pr-4 py-2.5 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-sm text-body-sm text-on-surface focus:ring-2 focus:ring-secondary-container focus:border-secondary-container transition-shadow placeholder:text-outline/60" id="profile-url" placeholder="https://linkedin.com/in/username" type="url"/>
+</div>
+</div>
+<!-- Goal Dropdown -->
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant tracking-wider" for="campaign-goal">Outreach Goal</label>
+<div class="relative">
+<select class="w-full pl-4 pr-10 py-2.5 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-sm text-body-sm text-on-surface focus:ring-2 focus:ring-secondary-container focus:border-secondary-container appearance-none transition-shadow cursor-pointer" id="campaign-goal">
+<option value="job">Job Inquiry</option>
+<option value="collab">Collaboration Proposal</option>
+<option value="advice">Seeking Advice / Mentorship</option>
+<option value="sales">Sales Pitch / Demo Request</option>
+</select>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Context Textarea -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<label class="font-label-caps text-label-caps text-on-surface-variant tracking-wider" for="context-bio">Additional Context / Bio</label>
+<span class="font-mono-label text-mono-label text-outline">Optional</span>
+</div>
+<textarea class="w-full p-4 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-sm text-body-sm text-on-surface focus:ring-2 focus:ring-secondary-container focus:border-secondary-container transition-shadow resize-y placeholder:text-outline/60" id="context-bio" placeholder="Mention a mutual connection, a recent post they made, or a specific value proposition you offer..." rows="4"></textarea>
+</div>
+</form>
+</div>
+<!-- Right Panel: Generated Output -->
+<div class="lg:col-span-7 bg-surface-bright rounded-xl border border-outline-variant shadow-[0px_4px_12px_rgba(0,0,0,0.02)] flex flex-col h-full min-h-[500px] overflow-hidden relative">
+<!-- Panel Header -->
+<div class="px-6 py-4 border-b border-surface-variant bg-surface-container-lowest flex justify-between items-center shrink-0">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-[20px]">edit_document</span>
+<h3 class="font-title-md text-title-md text-on-surface">Generated Result</h3>
+</div>
+<div class="flex gap-2">
+<button class="p-2 rounded-lg text-outline hover:text-on-surface hover:bg-surface-container-high transition-colors disabled:opacity-50" disabled="" title="Copy to clipboard">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+</button>
+<button class="p-2 rounded-lg text-outline hover:text-on-surface hover:bg-surface-container-high transition-colors disabled:opacity-50" disabled="" title="Regenerate">
+<span class="material-symbols-outlined text-[20px]">refresh</span>
+</button>
+</div>
+</div>
+<!-- Content Area (Empty State Default) -->
+<div class="flex-1 p-8 flex flex-col items-center justify-center text-center dot-grid-bg relative">
+<!-- Decorative background element -->
+<div class="absolute inset-0 bg-gradient-to-b from-surface-bright/50 to-surface-bright pointer-events-none"></div>
+<div class="relative z-10 max-w-md mx-auto flex flex-col items-center">
+<div class="w-16 h-16 rounded-2xl bg-surface-container border border-outline-variant flex items-center justify-center mb-6 shadow-sm">
+<span class="material-symbols-outlined text-[32px] text-tertiary">auto_awesome</span>
+</div>
+<h4 class="font-title-md text-title-md text-on-surface mb-2">Ready to Draft</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-8">Fill in the target details on the left and hit generate. We'll analyze the profile and craft a compelling message tailored to your goal.</p>
+<!-- Main CTA -->
+<button class="bg-primary hover:bg-surface-tint text-on-primary font-body-sm text-body-sm font-medium py-3 px-8 rounded-xl shadow-sm hover:shadow-md transition-all active:scale-[0.98] flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">magic_button</span>
+                            Generate Message
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Upgrade to Pro - SlideInto</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Smooth scrolling for anchor links if any */
+        html { scroll-behavior: smooth; }
+        
+        /* Hide scrollbar for sidebar but keep functionality */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-low": "#f2f4f6",
+                      "error": "#ba1a1a",
+                      "secondary-fixed-dim": "#a8c8ff",
+                      "on-background": "#191c1e",
+                      "surface-container-high": "#e6e8ea",
+                      "surface-container-highest": "#e0e3e5",
+                      "error-container": "#ffdad6",
+                      "primary-fixed": "#dbe1ff",
+                      "on-tertiary-container": "#e9f0ff",
+                      "secondary-fixed": "#d5e3ff",
+                      "on-tertiary-fixed-variant": "#38485d",
+                      "surface-dim": "#d8dadc",
+                      "secondary-container": "#a8c8ff",
+                      "on-primary-container": "#eeefff",
+                      "tertiary": "#46566c",
+                      "on-secondary-fixed-variant": "#254776",
+                      "on-surface-variant": "#434655",
+                      "on-error-container": "#93000a",
+                      "secondary": "#3f5f90",
+                      "surface-variant": "#e0e3e5",
+                      "on-primary": "#ffffff",
+                      "on-primary-fixed-variant": "#003ea8",
+                      "inverse-on-surface": "#eff1f3",
+                      "background": "#f7f9fb",
+                      "on-primary-fixed": "#00174b",
+                      "tertiary-fixed-dim": "#b7c8e1",
+                      "on-tertiary": "#ffffff",
+                      "primary": "#004ac6",
+                      "inverse-primary": "#b4c5ff",
+                      "surface-container": "#eceef0",
+                      "primary-container": "#2563eb",
+                      "outline-variant": "#c3c6d7",
+                      "on-tertiary-fixed": "#0b1c30",
+                      "outline": "#737686",
+                      "on-secondary-container": "#325383",
+                      "tertiary-container": "#5e6e85",
+                      "on-secondary-fixed": "#001b3c",
+                      "tertiary-fixed": "#d3e4fe",
+                      "surface-bright": "#f7f9fb",
+                      "on-error": "#ffffff",
+                      "inverse-surface": "#2d3133",
+                      "surface-container-lowest": "#ffffff",
+                      "surface": "#f7f9fb",
+                      "on-surface": "#191c1e",
+                      "primary-fixed-dim": "#b4c5ff",
+                      "on-secondary": "#ffffff",
+                      "surface-tint": "#0053db"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "margin-desktop": "40px",
+                      "unit": "4px",
+                      "container-max": "1280px",
+                      "gutter": "24px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Inter"],
+                      "mono-label": ["Inter"],
+                      "label-caps": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "title-md": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "body-sm": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "mono-label": ["13px", {"lineHeight": "18px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+    </script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+</head>
+<body class="bg-background text-on-surface antialiased flex">
+<!-- Mobile Top Header (Visible only on small screens) -->
+<header class="md:hidden fixed top-0 w-full z-50 bg-surface-container-lowest border-b border-outline-variant h-16 flex items-center px-margin-mobile justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="font-title-md text-title-md font-bold text-on-surface">SlideInto</span>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface" id="mobile-menu-btn">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<!-- SideNavBar (Shared Component) -->
+<aside class="bg-surface-container-lowest text-primary font-body-sm text-body-sm w-[240px] h-screen fixed left-0 top-0 border-r border-outline-variant flex flex-col p-6 z-40 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out" id="sidebar">
+<!-- Header -->
+<div class="mb-8 flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div>
+<h1 class="font-title-md text-title-md font-bold text-on-surface leading-tight">SlideInto</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-tight">Ghostwriter AI</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 flex flex-col gap-2 overflow-y-auto no-scrollbar">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined">bolt</span>
+                Generate DM
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined">history</span>
+                History
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined">rocket_launch</span>
+                Bulk Mode
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined">extension</span>
+                Chrome Extension
+            </a>
+<!-- Active Tab indicating context (Settings/Billing area) -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-secondary-container text-on-secondary-container active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+                Settings
+            </a>
+</nav>
+<!-- CTA Widget (Suppressed/Modified state as we are ON the upgrade page, kept for structural integrity of component but muted) -->
+<div class="mt-8 mb-4 p-4 rounded-xl bg-surface-container-low border border-outline-variant">
+<p class="font-body-sm text-body-sm text-on-surface mb-2 font-medium">Currently on Starter</p>
+<div class="w-full bg-surface-variant rounded-full h-1.5 mb-2">
+<div class="bg-primary h-1.5 rounded-full" style="width: 100%"></div>
+</div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-3">10/10 DMs Used</p>
+<button class="w-full py-2 bg-surface-variant text-on-surface-variant rounded-lg font-body-sm text-body-sm opacity-50 cursor-not-allowed">
+                Upgrade to Pro
+            </button>
+</div>
+<!-- Footer Links -->
+<div class="pt-4 border-t border-outline-variant flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+                Help Center
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+                Log Out
+            </a>
+</div>
+</aside>
+<!-- Overlay for mobile sidebar -->
+<div class="fixed inset-0 bg-on-surface/20 z-30 hidden md:hidden backdrop-blur-sm transition-opacity opacity-0" id="mobile-overlay"></div>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-0 md:ml-[240px] pt-20 md:pt-0 min-h-screen relative">
+<!-- Subtle Background Glow -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/5 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+<div class="max-w-[1000px] mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-20">
+<!-- Page Header -->
+<div class="text-center mb-16">
+<h1 class="font-display-lg text-display-lg text-on-surface mb-4 tracking-tight">Unlock Your Outreach Potential</h1>
+<p class="font-title-md text-title-md text-on-surface-variant font-normal max-w-2xl mx-auto">
+                    Scale your networking with bulk automation, advanced tone matching, and unlimited history.
+                </p>
+</div>
+<!-- Pricing Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch relative z-10">
+<!-- Starter Card (Current) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-8 flex flex-col shadow-sm">
+<div class="mb-8">
+<div class="flex items-center justify-between mb-2">
+<h2 class="font-title-md text-title-md text-on-surface">Starter</h2>
+<span class="bg-surface-container-high text-on-surface-variant font-label-caps text-label-caps px-2 py-1 rounded">CURRENT</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="font-display-lg text-display-lg text-on-surface">$0</span>
+<span class="font-body-lg text-body-lg text-on-surface-variant">/mo</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Perfect for trying out the core features.</p>
+</div>
+<div class="flex-1">
+<ul class="flex flex-col gap-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-outline mt-0.5 text-[20px]">check</span>
+<span class="font-body-lg text-body-lg text-on-surface-variant">10 AI Generations per month</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-outline mt-0.5 text-[20px]">check</span>
+<span class="font-body-lg text-body-lg text-on-surface-variant">Standard Tone AI</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-outline mt-0.5 text-[20px]">check</span>
+<span class="font-body-lg text-body-lg text-on-surface-variant">30-day History Retention</span>
+</li>
+<li class="flex items-start gap-3 opacity-50">
+<span class="material-symbols-outlined text-outline-variant mt-0.5 text-[20px]">close</span>
+<span class="font-body-lg text-body-lg text-on-surface-variant">Bulk Mode</span>
+</li>
+<li class="flex items-start gap-3 opacity-50">
+<span class="material-symbols-outlined text-outline-variant mt-0.5 text-[20px]">close</span>
+<span class="font-body-lg text-body-lg text-on-surface-variant">Chrome Extension</span>
+</li>
+</ul>
+</div>
+<div class="mt-8">
+<button class="w-full py-3 px-4 rounded-lg border border-outline-variant text-on-surface-variant font-title-md text-title-md opacity-50 cursor-not-allowed bg-surface-container-low" disabled="">
+                            Your Active Plan
+                        </button>
+</div>
+</div>
+<!-- Pro Card (Highlighted) -->
+<div class="bg-surface-container-lowest border-2 border-primary rounded-xl p-8 flex flex-col relative shadow-[0_8px_30px_rgb(0,0,0,0.04)] transform md:-translate-y-4">
+<!-- Badge -->
+<div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-primary text-on-primary font-label-caps text-label-caps px-4 py-1.5 rounded-full tracking-widest font-bold shadow-sm whitespace-nowrap">
+                        BEST VALUE
+                    </div>
+<div class="mb-8">
+<h2 class="font-title-md text-title-md text-primary mb-2 flex items-center gap-2">
+                            Pro
+                            <span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">stars</span>
+</h2>
+<div class="flex items-baseline gap-1">
+<span class="font-display-lg text-display-lg text-on-surface">$79</span>
+<span class="font-body-lg text-body-lg text-on-surface-variant">/mo</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Billed annually or $99 month-to-month.</p>
+</div>
+<div class="flex-1">
+<p class="font-mono-label text-mono-label text-on-surface mb-4 uppercase tracking-wider text-opacity-70">Everything in Starter, plus:</p>
+<ul class="flex flex-col gap-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5 text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-lg text-body-lg text-on-surface font-medium">Unlimited AI Generations</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5 text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-lg text-body-lg text-on-surface font-medium">Bulk Mode</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5 text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-lg text-body-lg text-on-surface font-medium">Chrome Extension</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5 text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-lg text-body-lg text-on-surface font-medium">Unlimited History</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5 text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-lg text-body-lg text-on-surface font-medium">Advanced Tone AI</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5 text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-lg text-body-lg text-on-surface font-medium">Priority Support</span>
+</li>
+</ul>
+</div>
+<div class="mt-8">
+<button class="w-full py-3 px-4 rounded-lg bg-primary-container text-on-primary font-title-md text-title-md hover:opacity-90 hover:shadow-md transition-all active:scale-[0.98] duration-150 flex items-center justify-center gap-2">
+                            Upgrade Now
+                            <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- FAQ Section -->
+<div class="mt-32 max-w-3xl mx-auto pb-20">
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-8 text-center">Frequently Asked Questions</h3>
+<div class="flex flex-col border-t border-outline-variant">
+<details class="group border-b border-outline-variant [&amp;_summary::-webkit-details-marker]:hidden">
+<summary class="flex cursor-pointer items-center justify-between gap-1.5 py-6 font-title-md text-title-md text-on-surface hover:text-primary transition-colors">
+                            What is Bulk Mode?
+                            <span class="material-symbols-outlined shrink-0 transition duration-300 group-open:-rotate-180 text-outline">
+                                expand_more
+                            </span>
+</summary>
+<p class="font-body-lg text-body-lg text-on-surface-variant pb-6 pr-8 leading-relaxed">
+                            Bulk Mode allows you to upload a CSV of LinkedIn profiles and automatically generate personalized connection requests or direct messages for all of them simultaneously, saving you hours of manual work.
+                        </p>
+</details>
+<details class="group border-b border-outline-variant [&amp;_summary::-webkit-details-marker]:hidden">
+<summary class="flex cursor-pointer items-center justify-between gap-1.5 py-6 font-title-md text-title-md text-on-surface hover:text-primary transition-colors">
+                            How does the Chrome Extension work?
+                            <span class="material-symbols-outlined shrink-0 transition duration-300 group-open:-rotate-180 text-outline">
+                                expand_more
+                            </span>
+</summary>
+<p class="font-body-lg text-body-lg text-on-surface-variant pb-6 pr-8 leading-relaxed">
+                            The extension integrates directly into your browser. When you visit a prospect's profile, SlideInto appears as a seamless sidebar allowing you to generate and send messages instantly without leaving the page.
+                        </p>
+</details>
+<details class="group border-b border-outline-variant [&amp;_summary::-webkit-details-marker]:hidden">
+<summary class="flex cursor-pointer items-center justify-between gap-1.5 py-6 font-title-md text-title-md text-on-surface hover:text-primary transition-colors">
+                            Can I cancel at any time?
+                            <span class="material-symbols-outlined shrink-0 transition duration-300 group-open:-rotate-180 text-outline">
+                                expand_more
+                            </span>
+</summary>
+<p class="font-body-lg text-body-lg text-on-surface-variant pb-6 pr-8 leading-relaxed">
+                            Yes, absolutely. If you choose the month-to-month plan, you can cancel your subscription at any time from your settings panel. Your access will remain active until the end of your current billing period.
+                        </p>
+</details>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple mobile menu toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('mobile-overlay');
+
+        function toggleMenu() {
+            const isClosed = sidebar.classList.contains('-translate-x-full');
+            if (isClosed) {
+                sidebar.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+            } else {
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.add('opacity-0');
+                setTimeout(() => overlay.classList.add('hidden'), 300);
+            }
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+    </script>
+</body></html>

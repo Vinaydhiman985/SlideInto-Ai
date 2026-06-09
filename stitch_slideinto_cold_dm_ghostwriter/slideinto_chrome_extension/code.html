@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SlideInto Chrome Extension</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f2f4f6",
+                        "surface-variant": "#e0e3e5",
+                        "surface-bright": "#f7f9fb",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-dim": "#d8dadc",
+                        "on-secondary-container": "#325383",
+                        "secondary-container": "#a8c8ff",
+                        "on-secondary-fixed": "#001b3c",
+                        "on-tertiary-container": "#e9f0ff",
+                        "secondary": "#3f5f90",
+                        "tertiary-fixed": "#d3e4fe",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface": "#f7f9fb",
+                        "tertiary": "#46566c",
+                        "secondary-fixed-dim": "#a8c8ff",
+                        "primary": "#004ac6",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#00174b",
+                        "surface-tint": "#0053db",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#5e6e85",
+                        "on-secondary-fixed-variant": "#254776",
+                        "surface-container": "#eceef0",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "on-surface-variant": "#434655",
+                        "secondary-fixed": "#d5e3ff",
+                        "outline-variant": "#c3c6d7",
+                        "primary-container": "#2563eb",
+                        "outline": "#737686",
+                        "inverse-surface": "#2d3133",
+                        "surface-container-highest": "#e0e3e5",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "background": "#f7f9fb",
+                        "primary-fixed": "#dbe1ff",
+                        "inverse-primary": "#b4c5ff",
+                        "on-primary-container": "#eeefff",
+                        "on-background": "#191c1e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "unit": "4px",
+                        "margin-desktop": "40px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "title-md": ["Inter"],
+                        "mono-label": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "mono-label": ["13px", { "lineHeight": "18px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased md:pl-[240px]">
+<!-- SideNavBar (Desktop Only) -->
+<nav class="hidden md:flex w-[240px] h-screen fixed left-0 top-0 bg-surface-container-lowest dark:bg-surface-container-lowest border-r border-outline-variant flex-col py-margin-desktop px-sm">
+<div class="mb-8 px-4">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">SlideInto</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Ghostwriter AI</p>
+</div>
+<div class="flex-1 flex flex-col gap-2 px-2">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">bolt</span>
+<span class="font-body-md text-body-md">Generate DM</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-body-md text-body-md">History</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">rocket_launch</span>
+<span class="font-body-md text-body-md">Bulk Mode</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-secondary-container text-on-secondary-container rounded-lg transition-colors active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined">extension</span>
+<span class="font-body-md text-body-md">Chrome Extension</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</div>
+<div class="mt-auto flex flex-col gap-2 px-2">
+<button class="w-full bg-primary-container text-on-primary font-body-sm text-body-sm py-2 rounded-lg hover:opacity-90 transition-opacity">
+                Upgrade to Pro
+            </button>
+<div class="mt-4 pt-4 border-t border-outline-variant flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-body-md text-body-md">Help Center</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-md text-body-md">Log Out</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- TopAppBar (Mobile Only) -->
+<header class="md:hidden flex justify-between items-center h-16 px-gutter w-full bg-surface dark:bg-surface border-b border-outline-variant z-50 sticky top-0">
+<h1 class="font-headline-sm text-headline-sm font-black text-on-surface">SlideInto</h1>
+<button class="text-primary font-body-sm text-body-sm hover:opacity-80 transition-opacity active:scale-98 duration-150">
+            Login
+        </button>
+</header>
+<!-- Main Content -->
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-gutter py-8 md:py-16">
+<!-- Hero Section -->
+<section class="flex flex-col lg:flex-row items-center gap-12 mb-24">
+<div class="flex-1 space-y-6 text-center lg:text-left">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed rounded-full font-label-caps text-label-caps">
+<span class="material-symbols-outlined" style="font-size: 16px;">extension</span>
+                    CHROME EXTENSION
+                </div>
+<h2 class="font-display-lg text-display-lg text-on-surface">
+                    Personalize DMs without leaving LinkedIn
+                </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto lg:mx-0">
+                    Instantly analyze profiles and draft hyper-personalized messages directly within your LinkedIn workflow. Stop context switching and start connecting.
+                </p>
+<div class="pt-4">
+<button class="bg-primary text-on-primary px-8 py-4 rounded-lg font-title-md text-title-md hover:bg-primary-container transition-colors shadow-sm flex items-center justify-center gap-2 w-full lg:w-auto mx-auto lg:mx-0">
+<svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.836 7.643l-6.31 9.932c-.156.248-.426.398-.718.398-.018 0-.036 0-.055-.002-.313-.02-.573-.223-.675-.515L8.52 12.98l-3.83-1.074c-.3-.083-.51-.336-.532-.647-.02-.31.155-.595.443-.726l11.66-5.26c.264-.12.576-.048.76.175.185.223.218.535.08.795z"></path>
+</svg>
+                        Add to Chrome (Free)
+                    </button>
+<p class="mt-3 font-body-sm text-body-sm text-on-surface-variant">Over 10,000 professionals use SlideInto</p>
+</div>
+</div>
+<div class="flex-1 w-full relative">
+<!-- Decorative background blob -->
+<div class="absolute inset-0 bg-secondary-fixed-dim opacity-20 blur-3xl rounded-full"></div>
+<div class="relative glass-card rounded-xl shadow-lg border border-surface-variant overflow-hidden" style="padding-top: 60%;">
+<!-- Simulated Browser/LinkedIn UI -->
+<div class="absolute inset-0 flex flex-col bg-surface-container-lowest">
+<!-- Browser Header -->
+<div class="h-8 bg-surface-container-low border-b border-surface-variant flex items-center px-4 gap-2">
+<div class="flex gap-1.5">
+<div class="w-3 h-3 rounded-full bg-error-container"></div>
+<div class="w-3 h-3 rounded-full bg-surface-variant"></div>
+<div class="w-3 h-3 rounded-full bg-surface-variant"></div>
+</div>
+<div class="flex-1 mx-4 h-5 bg-surface-bright rounded-md text-center text-[10px] text-outline flex items-center justify-center">
+                                linkedin.com/in/sarah-connor
+                            </div>
+</div>
+<!-- LinkedIn Mock Profile -->
+<div class="flex-1 p-6 relative">
+<div class="flex items-start gap-4 border-b border-surface-variant pb-6 mb-6">
+<div class="w-24 h-24 rounded-full bg-surface-container-highest"></div>
+<div class="space-y-2 flex-1">
+<div class="w-1/2 h-6 bg-surface-container-highest rounded"></div>
+<div class="w-3/4 h-4 bg-surface-container-low rounded"></div>
+<div class="w-1/4 h-4 bg-surface-container-low rounded"></div>
+</div>
+</div>
+<!-- SlideInto Extension UI Overlay -->
+<div class="absolute bottom-6 right-6 w-80 bg-surface-container-lowest rounded-xl shadow-[0px_8px_24px_rgba(0,0,0,0.12)] border border-primary-fixed flex flex-col overflow-hidden animate-[slideUp_0.5s_ease-out]">
+<div class="bg-primary px-4 py-3 flex justify-between items-center">
+<div class="flex items-center gap-2 text-on-primary">
+<span class="material-symbols-outlined" style="font-size: 18px;">bolt</span>
+<span class="font-mono-label text-mono-label">SlideInto Analysis</span>
+</div>
+<span class="material-symbols-outlined text-on-primary opacity-80" style="font-size: 16px;">close</span>
+</div>
+<div class="p-4 space-y-4">
+<div class="flex gap-2">
+<span class="px-2 py-1 bg-tertiary-fixed text-on-tertiary-fixed rounded text-[10px] font-bold">Tech Leader</span>
+<span class="px-2 py-1 bg-secondary-fixed text-on-secondary-fixed rounded text-[10px] font-bold">Hiring</span>
+</div>
+<div class="space-y-2">
+<div class="p-3 bg-surface-bright border border-surface-variant rounded-lg text-sm text-on-surface">
+                                            "Hi Sarah, noticed your team is expanding. Based on your recent post about scaling AI infrastructure, I'd love to share how we helped Acme Corp solve..."
+                                        </div>
+</div>
+<div class="flex justify-end gap-2 pt-2">
+<button class="px-3 py-1.5 text-xs font-semibold text-primary">Regenerate</button>
+<button class="px-3 py-1.5 bg-primary text-on-primary text-xs font-semibold rounded">Insert to Chat</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid Features -->
+<section class="space-y-8">
+<div class="text-center mb-12">
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Supercharge your outreach</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2">Everything you need, right where you need it.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Feature 1 -->
+<div class="bg-surface-container-lowest p-8 rounded-2xl border border-surface-variant shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined" style="font-size: 80px;">psychology</span>
+</div>
+<div class="w-12 h-12 bg-secondary-fixed rounded-full flex items-center justify-center mb-6 text-on-secondary-fixed">
+<span class="material-symbols-outlined">psychology</span>
+</div>
+<h4 class="font-title-md text-title-md text-on-surface mb-3">1-click analysis</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Instantly scan a prospect's entire profile, recent posts, and company news to find the perfect hook.</p>
+</div>
+<!-- Feature 2 -->
+<div class="bg-surface-container-lowest p-8 rounded-2xl border border-surface-variant shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined" style="font-size: 80px;">edit_document</span>
+</div>
+<div class="w-12 h-12 bg-tertiary-fixed rounded-full flex items-center justify-center mb-6 text-on-tertiary-fixed">
+<span class="material-symbols-outlined">edit_document</span>
+</div>
+<h4 class="font-title-md text-title-md text-on-surface mb-3">Inline drafting</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Generate hyper-personalized messages directly in the LinkedIn message box. No copy-pasting required.</p>
+</div>
+<!-- Feature 3 -->
+<div class="bg-surface-container-lowest p-8 rounded-2xl border border-surface-variant shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined" style="font-size: 80px;">sync</span>
+</div>
+<div class="w-12 h-12 bg-primary-fixed rounded-full flex items-center justify-center mb-6 text-on-primary-fixed">
+<span class="material-symbols-outlined">sync</span>
+</div>
+<h4 class="font-title-md text-title-md text-on-surface mb-3">History sync</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Every message generated is automatically synced to your dashboard for tracking, A/B testing, and CRM integration.</p>
+</div>
+</div>
+</section>
+</main>
+<style>
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</body></html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SlideInto - Cold DMs that don't sound cold.</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#0053db",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#c3c6d7",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "on-secondary-fixed": "#001b3c",
+                        "surface-dim": "#d8dadc",
+                        "secondary-container": "#a8c8ff",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "tertiary-fixed": "#d3e4fe",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#325383",
+                        "background": "#f7f9fb",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f2f4f6",
+                        "on-tertiary-container": "#e9f0ff",
+                        "on-primary-fixed": "#00174b",
+                        "on-primary": "#ffffff",
+                        "outline": "#737686",
+                        "inverse-primary": "#b4c5ff",
+                        "surface-container": "#eceef0",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#a8c8ff",
+                        "surface-bright": "#f7f9fb",
+                        "surface-container-highest": "#e0e3e5",
+                        "primary-fixed": "#dbe1ff",
+                        "primary-container": "#2563eb",
+                        "primary": "#004ac6",
+                        "on-primary-container": "#eeefff",
+                        "on-surface-variant": "#434655",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "on-background": "#191c1e",
+                        "on-secondary-fixed-variant": "#254776",
+                        "tertiary-container": "#5e6e85",
+                        "on-surface": "#191c1e",
+                        "tertiary": "#46566c",
+                        "surface": "#f7f9fb",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-fixed": "#d5e3ff",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2d3133",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "secondary": "#3f5f90",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-variant": "#e0e3e5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "title-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "mono-label": ["Inter"]
+                    },
+                    "fontSize": {
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "mono-label": ["13px", { "lineHeight": "18px", "letterSpacing": "-0.01em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        @media (prefers-reduced-motion: no-preference) {
+            .fade-in-up { opacity: 0; transform: translateY(20px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+            .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+            
+            .stagger-1 { transition-delay: 0.1s; }
+            .stagger-2 { transition-delay: 0.2s; }
+            .stagger-3 { transition-delay: 0.3s; }
+            .stagger-4 { transition-delay: 0.4s; }
+
+            .hover-lift { transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+            .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 10px 25px -5px rgba(168, 200, 255, 0.4), 0 8px 10px -6px rgba(168, 200, 255, 0.1); }
+        }
+        
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-start infinite;
+            color: #004ac6;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+        
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface font-body-lg antialiased">
+<!-- TopNavBar -->
+<nav class="bg-surface/80 dark:bg-surface/80 backdrop-blur-md fixed top-0 w-full border-b border-outline-variant/30 z-50">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex items-center justify-between h-16">
+<div class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed">
+                SlideInto
+            </div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-low px-3 py-2 rounded-lg" href="#features">Features</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-low px-3 py-2 rounded-lg" href="#pricing">Pricing</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-low px-3 py-2 rounded-lg" href="#about">About</a>
+</div>
+<div class="flex items-center gap-4">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary hidden md:block" href="#">Login</a>
+<button class="bg-primary text-on-primary font-body-sm text-body-sm px-4 py-2 rounded-lg hover:opacity-90 transition-opacity hover-lift">Get Started</button>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-16">
+<!-- Hero Section -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16 md:py-24">
+<div class="text-center max-w-3xl mx-auto">
+<h1 class="font-display-lg text-display-lg text-on-surface mb-6 leading-tight fade-in-up stagger-1">Cold DMs that don't sound cold.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-2xl mx-auto fade-in-up stagger-2">Analyze prospect profiles instantly and generate highly personalized outreach that actually gets replies.</p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-lg mx-auto bg-surface p-2 rounded-full border border-outline-variant/50 shadow-sm focus-within:ring-2 focus-within:ring-secondary-container transition-all fade-in-up stagger-3">
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-on-surface font-body-sm text-body-sm w-full px-4" placeholder="Paste LinkedIn or X profile URL..." type="url"/>
+<button class="bg-primary text-on-primary font-body-sm text-body-sm px-6 py-3 rounded-full hover:bg-primary-fixed-dim hover:text-on-primary-fixed transition-colors whitespace-nowrap w-full sm:w-auto hover-lift">Analyze Profile</button>
+</div>
+</div>
+<!-- Floating Preview Card -->
+<div class="mt-16 max-w-2xl mx-auto bg-surface-container-lowest border border-outline-variant/30 rounded-xl shadow-lg p-6 relative overflow-hidden fade-in-up stagger-4">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-secondary-container to-primary"></div>
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">person</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-title-md text-title-md text-on-surface">Alex Chen</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Founder @ TechStart</p>
+</div>
+<span class="bg-secondary-container/20 text-on-secondary-container px-2 py-1 rounded font-mono-label text-mono-label flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">bolt</span> 98% Match
+                            </span>
+</div>
+<div class="bg-surface p-4 rounded-lg border border-outline-variant/20 mt-4 relative min-h-[100px]">
+<p class="font-body-sm text-body-sm text-on-surface-variant italic" id="typing-dm">"Hey Alex, loved your recent post on sustainable scaling. Noticed TechStart is hiring engineers - thought I'd share a resource we use to find pre-vetted senior devs. Open to a quick chat?"</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- How it Works -->
+<section class="bg-surface py-20 mt-12">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<h2 class="font-headline-lg text-headline-lg text-center mb-16 fade-in-up">How it works</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="text-center fade-in-up stagger-1">
+<div class="w-16 h-16 bg-surface-container-lowest rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-outline-variant/20">
+<span class="material-symbols-outlined text-primary text-3xl">link</span>
+</div>
+<h3 class="font-title-md text-title-md mb-2">1. Connect</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Drop a profile link or sync your CRM.</p>
+</div>
+<div class="text-center relative fade-in-up stagger-2">
+<div class="hidden md:block absolute top-8 left-0 w-full h-[1px] bg-outline-variant/30 -z-10"></div>
+<div class="w-16 h-16 bg-surface-container-lowest rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-outline-variant/20">
+<span class="material-symbols-outlined text-primary text-3xl">psychology</span>
+</div>
+<h3 class="font-title-md text-title-md mb-2">2. Analyze</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">AI extracts interests, recent posts, and tone.</p>
+</div>
+<div class="text-center relative fade-in-up stagger-3">
+<div class="hidden md:block absolute top-8 left-0 w-full h-[1px] bg-outline-variant/30 -z-10"></div>
+<div class="w-16 h-16 bg-surface-container-lowest rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-outline-variant/20">
+<span class="material-symbols-outlined text-primary text-3xl">send</span>
+</div>
+<h3 class="font-title-md text-title-md mb-2">3. Send</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Generate and send hyper-personalized DMs.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Grid -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24" id="features">
+<h2 class="font-headline-lg text-headline-lg text-center mb-16 fade-in-up">Powerful features for seamless outreach</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/30 shadow-sm transition-shadow fade-in-up stagger-1 hover-lift">
+<span class="material-symbols-outlined text-primary mb-4 text-2xl">tune</span>
+<h3 class="font-title-md text-title-md mb-2">Tone Personalization</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Match your prospect's communication style automatically.</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/30 shadow-sm transition-shadow fade-in-up stagger-2 hover-lift">
+<span class="material-symbols-outlined text-primary mb-4 text-2xl">hub</span>
+<h3 class="font-title-md text-title-md mb-2">Multi-Platform</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Works flawlessly across X (Twitter) and LinkedIn.</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/30 shadow-sm transition-shadow fade-in-up stagger-3 hover-lift">
+<span class="material-symbols-outlined text-primary mb-4 text-2xl">auto_awesome_motion</span>
+<h3 class="font-title-md text-title-md mb-2">Bulk Ghostwriting</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Upload a list and generate 100s of unique drafts instantly.</p>
+</div>
+</div>
+</section>
+<!-- Result Showcase -->
+<section class="bg-surface py-24 fade-in-up">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<h2 class="font-headline-lg text-headline-lg text-center mb-16">The Difference is in the Details</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+<!-- Standard DM -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/30 opacity-70">
+<div class="flex items-center gap-2 mb-4 border-b border-outline-variant/20 pb-4">
+<span class="material-symbols-outlined text-error">close</span>
+<h3 class="font-title-md text-title-md">Standard DM</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">"Hi there, I see you work in tech. We offer B2B lead generation services that can 10x your revenue. Let's book a call."</p>
+</div>
+<!-- SlideInto DM -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border-2 border-secondary-container shadow-md relative hover-lift">
+<div class="absolute -top-3 -right-3 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-caps text-label-caps">WINNER</div>
+<div class="flex items-center gap-2 mb-4 border-b border-outline-variant/20 pb-4">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<h3 class="font-title-md text-title-md">SlideInto DM</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">"Hey Alex, loved your take on the current AI landscape in your last post. Noticed TechStart is expanding the engineering team—we help startups like yours find pre-vetted senior devs without the agency bloat. Open to a quick chat next week?"</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing Section -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24 fade-in-up" id="pricing">
+<h2 class="font-headline-lg text-headline-lg text-center mb-16">Simple Pricing</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+<!-- Basic -->
+<div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/30 flex flex-col hover-lift bg-surface-container-lowest transition-all duration-300">
+<h3 class="font-title-md text-title-md mb-2">Starter</h3>
+<div class="font-display-lg text-display-lg mb-6">$29<span class="font-body-sm text-body-sm text-on-surface-variant">/mo</span></div>
+<ul class="mb-8 flex-1 space-y-4">
+<li class="flex items-center gap-2 font-body-sm text-body-sm"><span class="material-symbols-outlined text-primary text-[18px]">check</span> 100 Profiles/mo</li>
+<li class="flex items-center gap-2 font-body-sm text-body-sm"><span class="material-symbols-outlined text-primary text-[18px]">check</span> Basic Tone Matching</li>
+</ul>
+<button class="w-full bg-surface text-on-surface border border-outline-variant/50 font-body-sm text-body-sm px-4 py-2 rounded-lg hover:bg-surface-container-low transition-colors hover-lift">Choose Starter</button>
+</div>
+<!-- Pro -->
+<div class="bg-surface-container-lowest p-8 rounded-xl border-2 border-primary shadow-lg relative flex flex-col transform md:-translate-y-4 hover-lift transition-all duration-300">
+<div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary text-on-primary px-3 py-1 rounded-full font-label-caps text-label-caps">POPULAR</div>
+<h3 class="font-title-md text-title-md mb-2">Pro</h3>
+<div class="font-display-lg text-display-lg mb-6">$79<span class="font-body-sm text-body-sm text-on-surface-variant">/mo</span></div>
+<ul class="mb-8 flex-1 space-y-4">
+<li class="flex items-center gap-2 font-body-sm text-body-sm"><span class="material-symbols-outlined text-primary text-[18px]">check</span> 1000 Profiles/mo</li>
+<li class="flex items-center gap-2 font-body-sm text-body-sm"><span class="material-symbols-outlined text-primary text-[18px]">check</span> Advanced Tone Personalization</li>
+<li class="flex items-center gap-2 font-body-sm text-body-sm"><span class="material-symbols-outlined text-primary text-[18px]">check</span> CRM Integration</li>
+</ul>
+<button class="w-full bg-primary text-on-primary font-body-sm text-body-sm px-4 py-3 rounded-lg hover:bg-primary-fixed-dim transition-colors hover-lift">Get Pro</button>
+</div>
+<!-- Enterprise -->
+<div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/30 flex flex-col hover-lift transition-all duration-300">
+<h3 class="font-title-md text-title-md mb-2">Enterprise</h3>
+<div class="font-display-lg text-display-lg mb-6">Custom</div>
+<ul class="mb-8 flex-1 space-y-4">
+<li class="flex items-center gap-2 font-body-sm text-body-sm"><span class="material-symbols-outlined text-primary text-[18px]">check</span> Unlimited Profiles</li>
+<li class="flex items-center gap-2 font-body-sm text-body-sm"><span class="material-symbols-outlined text-primary text-[18px]">check</span> Dedicated API</li>
+<li class="flex items-center gap-2 font-body-sm text-body-sm"><span class="material-symbols-outlined text-primary text-[18px]">check</span> Priority Support</li>
+</ul>
+<button class="w-full bg-surface text-on-surface border border-outline-variant/50 font-body-sm text-body-sm px-4 py-2 rounded-lg hover:bg-surface-container-low transition-colors hover-lift">Contact Sales</button>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24 fade-in-up">
+<div class="bg-primary-container text-on-primary-container rounded-2xl p-12 text-center max-w-4xl mx-auto shadow-lg relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent pointer-events-none"></div>
+<h2 class="font-headline-lg text-headline-lg mb-6 relative z-10">Ready to slide in?</h2>
+<p class="font-body-lg text-body-lg mb-8 opacity-90 max-w-2xl mx-auto relative z-10">Start sending highly personalized outreach today. No credit card required for your first 50 DMs.</p>
+<button class="bg-on-primary text-primary font-title-md text-title-md px-8 py-4 rounded-xl hover:bg-surface-container-lowest transition-colors relative z-10 shadow-sm hover-lift">Start Free Trial</button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-dim border-t border-outline-variant/20 w-full">
+<div class="max-w-container-max mx-auto px-margin-desktop py-12 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="font-title-md text-title-md font-bold text-on-surface">SlideInto</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100 hover:underline" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100 hover:underline" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100 hover:underline" href="#">Contact</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100 hover:underline" href="#">Twitter</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100 hover:underline" href="#">LinkedIn</a>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">© 2024 SlideInto. All rights reserved.</div>
+</div>
+</footer>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Respect prefers-reduced-motion
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            
+            if (!prefersReducedMotion) {
+                // Intersection Observer for fade-in animations
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            // Trigger typing effect when preview card comes into view
+                            if (entry.target.querySelector('#typing-dm') && !entry.target.classList.contains('typed')) {
+                                startTypingEffect();
+                                entry.target.classList.add('typed');
+                            }
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: "0px 0px -50px 0px"
+                });
+
+                document.querySelectorAll('.fade-in-up').forEach(element => {
+                    observer.observe(element);
+                });
+            } else {
+                // Make all elements visible immediately if motion is reduced
+                document.querySelectorAll('.fade-in-up').forEach(element => {
+                    element.classList.add('visible');
+                    element.style.opacity = '1';
+                    element.style.transform = 'none';
+                });
+            }
+
+            // Typing Effect Logic
+            function startTypingEffect() {
+                const textElement = document.getElementById('typing-dm');
+                if (!textElement) return;
+                
+                const originalText = textElement.textContent;
+                textElement.textContent = '';
+                textElement.classList.add('typing-cursor');
+                
+                let i = 0;
+                function typeChar() {
+                    if (i < originalText.length) {
+                        textElement.textContent += originalText.charAt(i);
+                        i++;
+                        // Randomize typing speed slightly for realism
+                        setTimeout(typeChar, Math.random() * 20 + 10); 
+                    } else {
+                        setTimeout(() => {
+                            textElement.classList.remove('typing-cursor');
+                        }, 1000);
+                    }
+                }
+                // Small initial delay
+                setTimeout(typeChar, 500);
+            }
+        });
+    </script>
+</body></html>

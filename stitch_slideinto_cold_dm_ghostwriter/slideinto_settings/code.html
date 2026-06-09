@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SlideInto - Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f2f4f6",
+                        "surface-variant": "#e0e3e5",
+                        "surface-bright": "#f7f9fb",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-dim": "#d8dadc",
+                        "on-secondary-container": "#325383",
+                        "secondary-container": "#a8c8ff",
+                        "on-secondary-fixed": "#001b3c",
+                        "on-tertiary-container": "#e9f0ff",
+                        "secondary": "#3f5f90",
+                        "tertiary-fixed": "#d3e4fe",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface": "#f7f9fb",
+                        "tertiary": "#46566c",
+                        "secondary-fixed-dim": "#a8c8ff",
+                        "primary": "#004ac6",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#00174b",
+                        "surface-tint": "#0053db",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#5e6e85",
+                        "on-secondary-fixed-variant": "#254776",
+                        "surface-container": "#eceef0",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "on-surface-variant": "#434655",
+                        "secondary-fixed": "#d5e3ff",
+                        "outline-variant": "#c3c6d7",
+                        "primary-container": "#2563eb",
+                        "outline": "#737686",
+                        "inverse-surface": "#2d3133",
+                        "surface-container-highest": "#e0e3e5",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "background": "#f7f9fb",
+                        "primary-fixed": "#dbe1ff",
+                        "inverse-primary": "#b4c5ff",
+                        "on-primary-container": "#eeefff",
+                        "on-background": "#191c1e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "unit": "4px",
+                        "margin-desktop": "40px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "title-md": ["Inter"],
+                        "mono-label": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "mono-label": ["13px", { "lineHeight": "18px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface h-screen flex overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- Desktop SideNavBar -->
+<nav class="hidden md:flex flex-col py-6 px-4 bg-surface-container-lowest text-primary font-body-sm text-body-sm w-[240px] h-screen fixed left-0 top-0 border-r border-outline-variant z-40">
+<!-- Header -->
+<div class="flex items-center gap-3 mb-8 px-2">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold overflow-hidden shrink-0">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a young woman with a neutral expression, serving as a user profile avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC16shrfiCTD9Zf_D6p9sqjyaiDti6TtjuS13h-FY6-R4Nv8vjBLQ0HdVF_I2hndalo_qVJMlaaX-j1D5E6ZmJXkoW2U214SLuc3iMAE6cqFjUzEEKiFHvo1StvyU1-eN6HaavZ7xiGvGSJl2Bv3Wh509aL0v1O5YRARyoPkYrllJqfuArkBg-E7bJtB9WfjZJ3vBfSjmLOcQG4K9GSw_tbyf4cAWStX9wr_pM82dd-85UFYLKEkTRArwbd97fVo5WyQe6JG3RkDM4r"/>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm font-bold text-primary tracking-tight">SlideInto</div>
+<div class="text-on-surface-variant text-[11px] font-medium leading-none mt-1 uppercase tracking-wider">Ghostwriter AI</div>
+</div>
+</div>
+<!-- Main Navigation -->
+<div class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">bolt</span>
+                Generate DM
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">history</span>
+                History
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">rocket_launch</span>
+                Bulk Mode
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">extension</span>
+                Chrome Extension
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 bg-secondary-container text-on-secondary-container rounded-lg active:scale-95 duration-200 font-medium" href="#">
+<span class="material-symbols-outlined text-[20px] text-primary" style="font-variation-settings: 'FILL' 1;">settings</span>
+                Settings
+            </a>
+</div>
+<!-- CTA & Footer -->
+<div class="mt-auto space-y-4 pt-4 border-t border-outline-variant">
+<button class="w-full py-2 px-4 bg-gradient-to-r from-primary to-surface-tint text-on-primary rounded-lg font-medium shadow-sm hover:opacity-90 transition-opacity active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">workspace_premium</span>
+                Upgrade to Pro
+            </button>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px]">help</span>
+                    Help Center
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+                    Log Out
+                </a>
+</div>
+</div>
+</nav>
+<!-- Mobile TopAppBar -->
+<header class="md:hidden fixed top-0 w-full z-50 flex justify-between items-center h-16 px-gutter max-w-container-max mx-auto bg-surface text-primary font-body-sm text-body-sm border-b border-outline-variant">
+<div class="font-headline-sm text-headline-sm font-black text-on-surface tracking-tight">SlideInto</div>
+<div class="flex items-center gap-4 hidden">
+<!-- Navigation links hidden on mobile settings page to prioritize content -->
+</div>
+<div class="flex items-center gap-3">
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 h-full overflow-y-auto relative pt-16 md:pt-0 md:ml-[240px] bg-surface">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8 md:py-12">
+<!-- Page Header -->
+<div class="mb-8">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">Account Settings</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Manage your profile, billing, and system integrations.</p>
+</div>
+<!-- Settings Navigation Tabs -->
+<div class="flex items-center gap-8 border-b border-outline-variant mb-8 overflow-x-auto no-scrollbar">
+<a class="font-title-md text-title-md text-primary border-b-2 border-primary pb-3 whitespace-nowrap px-1" href="#">Profile</a>
+<a class="font-title-md text-title-md text-on-surface-variant hover:text-on-surface transition-colors pb-3 border-b-2 border-transparent whitespace-nowrap px-1" href="#">Integration</a>
+<a class="font-title-md text-title-md text-on-surface-variant hover:text-on-surface transition-colors pb-3 border-b-2 border-transparent whitespace-nowrap px-1" href="#">Billing</a>
+<a class="font-title-md text-title-md text-on-surface-variant hover:text-on-surface transition-colors pb-3 border-b-2 border-transparent whitespace-nowrap px-1" href="#">API</a>
+</div>
+<!-- Active Tab Content: Profile -->
+<div class="max-w-3xl space-y-8 animate-fade-in-up">
+<!-- Personal Information Card -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="px-6 py-5 border-b border-outline-variant/50 bg-surface-bright/50">
+<h2 class="font-title-md text-title-md text-on-surface">Personal Information</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Update your basic profile details.</p>
+</div>
+<div class="p-6 space-y-6">
+<!-- Avatar row -->
+<div class="flex items-center gap-6">
+<div class="w-20 h-20 rounded-full border border-outline-variant bg-surface-container-low flex items-center justify-center overflow-hidden shrink-0 relative group cursor-pointer">
+<img alt="Current Avatar" class="w-full h-full object-cover group-hover:opacity-50 transition-opacity" data-alt="A professional headshot of a young woman with a neutral expression, serving as a user profile avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZHCLfQuzOVnGhj5EDdoIr3atFo_itRw1KB8vjO1HVBsBb2raYyGUCU39_9ZIXZb09YSBWG_1M3N1ffOYzAfb5mhWZCQm3_dPsa2wBrkoNKEn2PRdSaENiCMlmwLFh0utKKI9u21HdkQCsixbf3PnpTq4h-6UiWhD4BQHgC_rGsQssC8FEThLOsdr_fPlnuTh-GBkqSO4wXx92sj3cMyvIXsjmYYcWPh7b7SLubQa6mpjAFiTKrnqiUyTHlNTnbQUoGHtDLqzxMWyL"/>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-on-surface">photo_camera</span>
+</div>
+</div>
+<div>
+<button class="px-4 py-2 bg-surface-container-lowest border border-outline-variant text-on-surface rounded-lg font-mono-label text-mono-label hover:bg-surface-container-low transition-colors active:scale-95">Change Avatar</button>
+<p class="text-[12px] text-on-surface-variant mt-2">JPG, GIF or PNG. Max size of 2MB.</p>
+</div>
+</div>
+<!-- Grid form -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider block">Full Name</label>
+<input class="w-full px-4 py-2.5 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary-container focus:border-primary transition-shadow" type="text" value="Sarah Jenkins"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider block">Email Address</label>
+<input class="w-full px-4 py-2.5 bg-surface-container-low border border-outline-variant rounded-lg font-body-sm text-body-sm text-on-surface-variant cursor-not-allowed focus:outline-none" disabled="" type="email" value="sarah.j@example.com"/>
+<p class="text-[11px] text-on-surface-variant">Contact support to change your email.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- AI Context Card -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden relative">
+<!-- Decorative subtle gradient -->
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary-container to-surface-container-lowest"></div>
+<div class="px-6 py-5 border-b border-outline-variant/50 flex justify-between items-start md:items-center flex-col md:flex-row gap-4">
+<div>
+<h2 class="font-title-md text-title-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">psychology</span>
+                                Your Bio &amp; Context
+                            </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">This is the critical knowledge base the AI uses to impersonate your tone, highlight your achievements, and personalize outreach.</p>
+</div>
+<span class="px-2.5 py-1 bg-tertiary-fixed text-on-tertiary-fixed rounded-full font-mono-label text-[11px] tracking-wide shrink-0">High Importance</span>
+</div>
+<div class="p-6">
+<div class="space-y-3">
+<div class="flex justify-between items-end">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Context Window</label>
+<span class="font-mono-label text-[11px] text-on-surface-variant">450 / 2000 chars</span>
+</div>
+<textarea class="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary-container focus:border-primary transition-shadow resize-y" placeholder="E.g., I am a Senior Product Marketer specializing in B2B SaaS. My tone is professional but conversational, never overly formal. I like to focus on ROI and time-to-value in my outreach..." rows="8">I'm Sarah, a VP of Sales at a mid-sized tech logistics firm. I've been in the industry for 15 years, mostly focusing on supply chain optimization. 
+
+My outreach style should be direct, highly professional, and strictly value-oriented. Avoid slang or overly enthusiastic punctuation. I always want to highlight how our solutions reduce operational overhead within the first quarter.</textarea>
+</div>
+<!-- Pro Tip -->
+<div class="mt-6 p-4 rounded-lg bg-surface-bright border border-surface-variant flex gap-3">
+<span class="material-symbols-outlined text-tertiary text-[20px] shrink-0 mt-0.5">lightbulb</span>
+<div>
+<p class="font-mono-label text-mono-label text-on-surface font-semibold mb-1">Contextual Priming</p>
+<p class="font-body-sm text-[13px] text-on-surface-variant leading-relaxed">The more specific you are about your target audience and your unique value proposition, the better the AI can craft hyper-personalized openers.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Actions -->
+<div class="flex justify-end gap-4 pt-4 border-t border-outline-variant/50">
+<button class="px-6 py-2.5 bg-surface-container-lowest border border-outline-variant text-on-surface rounded-lg font-body-sm font-medium hover:bg-surface-container-low transition-colors active:scale-95">Discard Changes</button>
+<button class="px-6 py-2.5 bg-primary-container text-on-primary-container rounded-lg font-body-sm font-medium hover:opacity-90 transition-opacity active:scale-95 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">save</span>
+                        Save Profile
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<style>
+        /* Utility for hiding scrollbar but keeping functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Simple entry animation */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.4s ease-out forwards;
+        }
+    </style>
+</body></html>

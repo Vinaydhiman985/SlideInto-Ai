@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login - SlideInto</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "surface-container-low": "#f2f4f6",
+                            "error": "#ba1a1a",
+                            "secondary-fixed-dim": "#a8c8ff",
+                            "on-background": "#191c1e",
+                            "surface-container-high": "#e6e8ea",
+                            "surface-container-highest": "#e0e3e5",
+                            "error-container": "#ffdad6",
+                            "primary-fixed": "#dbe1ff",
+                            "on-tertiary-container": "#e9f0ff",
+                            "secondary-fixed": "#d5e3ff",
+                            "on-tertiary-fixed-variant": "#38485d",
+                            "surface-dim": "#d8dadc",
+                            "secondary-container": "#a8c8ff",
+                            "on-primary-container": "#eeefff",
+                            "tertiary": "#46566c",
+                            "on-secondary-fixed-variant": "#254776",
+                            "on-surface-variant": "#434655",
+                            "on-error-container": "#93000a",
+                            "secondary": "#3f5f90",
+                            "surface-variant": "#e0e3e5",
+                            "on-primary": "#ffffff",
+                            "on-primary-fixed-variant": "#003ea8",
+                            "inverse-on-surface": "#eff1f3",
+                            "background": "#f7f9fb",
+                            "on-primary-fixed": "#00174b",
+                            "tertiary-fixed-dim": "#b7c8e1",
+                            "on-tertiary": "#ffffff",
+                            "primary": "#004ac6",
+                            "inverse-primary": "#b4c5ff",
+                            "surface-container": "#eceef0",
+                            "primary-container": "#2563eb",
+                            "outline-variant": "#c3c6d7",
+                            "on-tertiary-fixed": "#0b1c30",
+                            "outline": "#737686",
+                            "on-secondary-container": "#325383",
+                            "tertiary-container": "#5e6e85",
+                            "on-secondary-fixed": "#001b3c",
+                            "tertiary-fixed": "#d3e4fe",
+                            "surface-bright": "#f7f9fb",
+                            "on-error": "#ffffff",
+                            "inverse-surface": "#2d3133",
+                            "surface-container-lowest": "#ffffff",
+                            "surface": "#f7f9fb",
+                            "on-surface": "#191c1e",
+                            "primary-fixed-dim": "#b4c5ff",
+                            "on-secondary": "#ffffff",
+                            "surface-tint": "#0053db"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.125rem",
+                            "lg": "0.25rem",
+                            "xl": "0.5rem",
+                            "full": "0.75rem"
+                    },
+                    "spacing": {
+                            "margin-desktop": "40px",
+                            "unit": "4px",
+                            "container-max": "1280px",
+                            "gutter": "24px",
+                            "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                            "headline-lg": ["Inter"],
+                            "mono-label": ["Inter"],
+                            "label-caps": ["Inter"],
+                            "display-lg": ["Inter"],
+                            "title-md": ["Inter"],
+                            "headline-lg-mobile": ["Inter"],
+                            "body-lg": ["Inter"],
+                            "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                            "mono-label": ["13px", { "lineHeight": "18px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                            "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                            "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex items-center justify-center relative overflow-hidden font-body-lg">
+<!-- Atmospheric Background Gradients -->
+<div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+<div class="absolute -top-[10%] -left-[10%] w-[60vw] h-[60vw] rounded-full bg-primary-fixed-dim opacity-30 blur-[120px] mix-blend-multiply"></div>
+<div class="absolute top-[40%] -right-[20%] w-[70vw] h-[70vw] rounded-full bg-secondary-fixed opacity-40 blur-[140px] mix-blend-multiply"></div>
+</div>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-[440px] mx-auto px-margin-mobile md:px-0 relative z-10">
+<!-- Brand Header -->
+<div class="text-center mb-8">
+<h2 class="font-display-lg text-display-lg text-primary tracking-tighter">SlideInto</h2>
+</div>
+<!-- Auth Card -->
+<div class="glass-panel rounded-xl border border-outline-variant/30 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-8 md:p-10">
+<div class="mb-8 text-center">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Login to SlideInto</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Welcome back. Continue to your dashboard.</p>
+</div>
+<!-- Primary Action -->
+<button class="w-full flex items-center justify-center gap-3 bg-primary-container hover:bg-primary-fixed-variant text-on-primary transition-all duration-200 py-3 px-4 rounded-lg font-mono-label text-mono-label group shadow-sm" type="button">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform" data-icon="work" style="font-variation-settings: 'FILL' 1;">work</span>
+                Login with LinkedIn
+            </button>
+<!-- Divider -->
+<div class="flex items-center my-6">
+<div class="flex-1 border-t border-outline-variant/40"></div>
+<span class="px-4 font-label-caps text-label-caps text-outline bg-transparent uppercase">Or</span>
+<div class="flex-1 border-t border-outline-variant/40"></div>
+</div>
+<!-- Secondary Form Action -->
+<form class="space-y-5" onsubmit="event.preventDefault();">
+<div class="space-y-1.5">
+<label class="block font-mono-label text-mono-label text-on-surface" for="email">Email Address</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2.5 font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-secondary-container focus:ring-2 focus:ring-secondary-container/20 transition-all placeholder:text-outline/60" id="email" placeholder="name@company.com" required="" type="email"/>
+</div>
+<div class="space-y-1.5">
+<div class="flex justify-between items-center">
+<label class="block font-mono-label text-mono-label text-on-surface" for="password">Password</label>
+<a class="font-mono-label text-mono-label text-primary hover:text-on-primary-fixed-variant transition-colors" href="#">Forgot Password?</a>
+</div>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2.5 font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-secondary-container focus:ring-2 focus:ring-secondary-container/20 transition-all placeholder:text-outline/60" id="password" placeholder="••••••••" required="" type="password"/>
+</div>
+<div class="pt-2">
+<button class="w-full bg-surface hover:bg-surface-container-low border border-outline-variant text-on-surface py-3 px-4 rounded-lg font-mono-label text-mono-label transition-colors shadow-sm" type="submit">
+                        Login with Email
+                    </button>
+</div>
+</form>
+</div>
+<!-- Footer Links -->
+<div class="text-center mt-8">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Don't have an account? 
+                <a class="font-mono-label text-mono-label text-primary hover:text-on-primary-fixed-variant transition-colors ml-1 border-b border-transparent hover:border-primary" href="#">Sign up</a>
+</p>
+</div>
+</main>
+</body></html>
