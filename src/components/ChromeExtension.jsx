@@ -122,23 +122,37 @@ export default function ChromeExtension() {
           <div className="flex-1 space-y-6 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed rounded-full font-label-caps text-label-caps">
               <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>extension</span>
-              CHROME EXTENSION
+              LOCAL INSTALLATION ACTIVE
             </div>
             <h2 className="font-display-lg text-display-lg text-on-surface">
               Personalize DMs without leaving LinkedIn
             </h2>
             <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto lg:mx-0 font-light">
-              Instantly analyze profiles and draft hyper-personalized messages directly within your LinkedIn workflow. Stop context switching and start connecting.
+              We have generated your functional Chrome Extension code locally inside the project! Follow these simple steps to load it into Chrome:
             </p>
-            <div className="pt-4">
-              <button className="bg-primary text-on-primary px-8 py-4 rounded-lg font-title-md text-title-md hover:bg-primary-container transition-colors shadow-sm flex items-center justify-center gap-2 w-full lg:w-auto mx-auto lg:mx-0 cursor-pointer active:scale-95 duration-150">
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.836 7.643l-6.31 9.932c-.156.248-.426.398-.718.398-.018 0-.036 0-.055-.002-.313-.02-.573-.223-.675-.515L8.52 12.98l-3.83-1.074c-.3-.083-.51-.336-.532-.647-.02-.31.155-.595.443-.726l11.66-5.26c.264-.12.576-.048.76.175.185.223.218.535.08.795z" />
-                </svg>
-                Add to Chrome (Free)
-              </button>
-              <p className="mt-3 font-body-sm text-body-sm text-on-surface-variant">Over 10,000 professionals use SlideInto</p>
+            
+            <div className="bg-surface-container-low border border-outline-variant p-5 rounded-xl text-left space-y-4 font-body-sm text-sm">
+              <div className="flex items-start gap-3">
+                <span className="bg-primary/20 text-primary font-bold text-xs px-2 py-0.5 rounded-full shrink-0">1</span>
+                <div>Open Google Chrome and navigate to <code className="bg-surface px-1.5 py-0.5 rounded text-primary">chrome://extensions/</code></div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="bg-primary/20 text-primary font-bold text-xs px-2 py-0.5 rounded-full shrink-0">2</span>
+                <div>Turn on <strong>Developer Mode</strong> using the toggle switch in the top right.</div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="bg-primary/20 text-primary font-bold text-xs px-2 py-0.5 rounded-full shrink-0">3</span>
+                <div>Click the <strong>Load unpacked</strong> button in the top left.</div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="bg-primary/20 text-primary font-bold text-xs px-2 py-0.5 rounded-full shrink-0">4</span>
+                <div>Select the <code className="bg-surface px-1.5 py-0.5 rounded text-primary">chrome-extension</code> folder inside your project directory (<code className="bg-surface px-1.5 py-0.5 rounded text-primary">d:/ColdDm/chrome-extension</code>).</div>
+              </div>
             </div>
+
+            <p className="font-body-sm text-xs text-on-surface-variant italic mt-3">
+              Once loaded, open any LinkedIn, X, or GitHub profile, open SlideInto Extension popup to log in, and begin inserting personalized drafts directly into messaging composers!
+            </p>
           </div>
 
           <div className="flex-1 w-full relative">

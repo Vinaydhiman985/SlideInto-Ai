@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    :root {
+      --color-primary: #3f40c7;
+      --color-primary-container: #e0e0ff;
+      --color-on-primary: #ffffff;
+      --color-on-primary-container: #00006e;
+      --color-surface: #fdfbff;
+      --color-on-surface: #1b1b21;
+      --color-surface-container: #f1f0f7;
+      --color-surface-container-high: #e3e1ec;
+      --color-outline: #767680;
+      --color-outline-variant: #c6c5d0;
+      --color-error: #ba1a1a;
+      --color-error-container: #ffdad6;
+      --color-on-error-container: #410002;
+      --color-secondary-container: #e1e1f4;
+      --color-on-secondary-container: #1b1b2c;
+    }
+
+    body {
+      width: 360px;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--color-surface);
+      color: var(--color-on-surface);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .container {
+      padding: 16px;
+      box-sizing: border-box;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--color-outline-variant);
+      padding-bottom: 12px;
+    }
+
+    .logo {
+      width: 24px;
+      height: 24px;
+      background-color: var(--color-primary);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .brand {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+
+    .sub-brand {
+      font-size: 11px;
+      color: var(--color-outline);
+      margin-left: auto;
+    }
+
+    .card {
+      background-color: var(--color-surface-container);
+      border: 1px solid var(--color-outline-variant);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--color-outline);
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      box-sizing: border-box;
+      border: 1px solid var(--color-outline-variant);
+      border-radius: 8px;
+      background-color: var(--color-surface);
+      color: var(--color-on-surface);
+      font-family: inherit;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--color-primary);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background-color: var(--color-primary);
+      color: var(--color-on-primary);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: opacity 0.2s;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .error-msg {
+      background-color: var(--color-error-container);
+      color: var(--color-on-error-container);
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      margin-bottom: 16px;
+      border: 1px solid var(--color-error);
+    }
+
+    .success-msg {
+      background-color: #d1e7dd;
+      color: #0f5132;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      margin-bottom: 16px;
+      border: 1px solid #badbcc;
+    }
+
+    .loading-spinner {
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top: 2px solid white;
+      width: 16px;
+      height: 16px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .variant-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-outline-variant);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .variant-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .variant-title {
+      font-weight: bold;
+      font-size: 12px;
+    }
+
+    .variant-score {
+      font-size: 10px;
+      background-color: var(--color-secondary-container);
+      color: var(--color-on-secondary-container);
+      padding: 2px 6px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .variant-text {
+      font-family: monospace;
+      font-size: 11px;
+      background: var(--color-surface-container);
+      padding: 8px;
+      border-radius: 6px;
+      white-space: pre-wrap;
+      max-height: 120px;
+      overflow-y: auto;
+      margin-bottom: 8px;
+      border: 1px solid var(--color-outline-variant);
+    }
+
+    .variant-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .variant-actions button {
+      padding: 8px;
+      font-size: 11px;
+    }
+
+    .btn-secondary {
+      background-color: var(--color-surface-container-high);
+      color: var(--color-on-surface);
+      border: 1px solid var(--color-outline-variant);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--color-surface-container);
+    }
+
+    .logout-btn {
+      background: transparent;
+      border: none;
+      color: var(--color-error);
+      padding: 0;
+      font-size: 12px;
+      cursor: pointer;
+      text-align: right;
+      width: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">⚡</div>
+      <div class="brand">SlideInto</div>
+      <div class="sub-brand">Ghostwriter</div>
+    </header>
+
+    <!-- Error Alert Container -->
+    <div id="error-alert" class="error-msg hidden"></div>
+    <div id="success-alert" class="success-msg hidden"></div>
+
+    <!-- View 1: Auth Screen -->
+    <div id="auth-view" class="card">
+      <h3 style="margin-top: 0; margin-bottom: 16px;">Log In to SlideInto</h3>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required placeholder="name@company.com">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" required placeholder="••••••••">
+        </div>
+        <button type="submit" id="login-submit">
+          <span>Log In</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- View 2: Generator Screen -->
+    <div id="generator-view" class="hidden">
+      <!-- User profile state -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <span id="user-greeting" style="font-size: 12px; font-weight: 600;">Welcome back!</span>
+        <button class="logout-btn" id="logout-btn">Log Out</button>
+      </div>
+
+      <div class="card">
+        <form id="generator-form">
+          <div class="form-group">
+            <label for="profile-url">Target Profile URL</label>
+            <input type="url" id="profile-url" required placeholder="Auto-detecting profile link...">
+          </div>
+          <div class="form-group">
+            <label for="outreach-goal">Outreach Goal</label>
+            <select id="outreach-goal">
+              <option value="job">Job Inquiry</option>
+              <option value="collab">Collaboration Proposal</option>
+              <option value="advice">Seeking Advice</option>
+              <option value="sales">Sales Pitch / Demo</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="context-bio">Context (Bio / Details)</label>
+            <textarea id="context-bio" rows="2" placeholder="Scraped bio details here..."></textarea>
+          </div>
+          <button type="submit" id="generate-submit">
+            <span>Generate Messages</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Generated outputs list -->
+      <div id="outputs-container" class="hidden">
+        <h4 style="margin-top: 0; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+          <span>✨ AI Variations</span>
+        </h4>
+        <div id="variants-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
